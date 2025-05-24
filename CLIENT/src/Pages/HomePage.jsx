@@ -7,7 +7,7 @@ function HomePage() {
   return (
     <HomeLayout>
       <div className="pt-10 text-white flex items-center justify-center gap-10 mx-16 h-[90vh]">
-        <div className="w-[54.5%] space-y-6">
+        <div className="w-[55%] space-y-6">
           <h1 className="text-5xl font-semibold ">
             Find out best{" "}
             <span className="text-yellow-500 font-bold">Online Courses</span>
@@ -32,7 +32,7 @@ function HomePage() {
           </div>
         </div>
 
-        <div className="w-[46.5%] flex items-center justify-center">
+        <div className="w-[45%] flex items-center justify-center">
           <img src={HomePageImge} alt="Homepage image" />
         </div>
       </div>
