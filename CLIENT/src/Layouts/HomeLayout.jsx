@@ -1,11 +1,15 @@
+import toast from "react-hot-toast";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { FiMenu } from "react-icons/fi";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import Footer from "../Components/Footer";
+import { logoutAccount } from "../Redux/Slices/AuthSlice";
 
 function HomeLayout({ children }) {
+  const dispatch = useDispatch();
+
   // for checking if user is Logged in or not
   const isLoggedIn = useSelector((state) => state?.auth?.isLoggedIn);
 
@@ -24,6 +28,11 @@ function HomeLayout({ children }) {
 
   const handleLogout = async (e) => {
     e.preventDefault();
+
+    const res = await dispatch(logoutAccount());
+    if (res?.payload?.success) {
+      toast.success("Logout Successful");
+    }
   };
 
   return (
