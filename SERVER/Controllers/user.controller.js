@@ -1,7 +1,7 @@
 import User from "../Models/user.model.js";
 import AppError from "../Utils/error.util.js";
 import cloudinary from "cloudinary";
-import fs from 'fs/promises'
+import fs from "fs/promises";
 
 const cookieOptions = {
   maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
