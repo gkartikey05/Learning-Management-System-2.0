@@ -141,7 +141,7 @@ export const updateUser = async (req, res, next) => {
   if (!user) {
     return next(new AppError("User not found", 404));
   }
-  if (req.fullName) {
+  if (fullName) {
     user.fullName = fullName;
   }
 

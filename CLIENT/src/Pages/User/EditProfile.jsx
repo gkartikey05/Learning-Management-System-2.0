@@ -51,7 +51,7 @@ function EditProfile() {
       return;
     }
     if (data.fullName.length < 3) {
-      toast.error("Name should have more than 5 characters");
+      toast.error("Name should have more than 3 characters");
       return;
     }
 
@@ -72,7 +72,7 @@ function EditProfile() {
         <form
           noValidate
           onSubmit={handleFormSubmit}
-          className="flex flex-col justify-around rounded-lg p-4 text-white w-80 h-[26rem] shadow-[0_0_10px_black]"
+          className="flex flex-col justify-around rounded-lg p-4 text-white min-w-80 h-[26rem] shadow-[0_0_10px_black]"
         >
           <h2 className="text-center text-2xl font-bold">Edit Profile</h2>
 
