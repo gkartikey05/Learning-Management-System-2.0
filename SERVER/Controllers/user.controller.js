@@ -132,3 +132,47 @@ export const logout = (req, res, next) => {
     return next(new AppError(err.message, 500));
   }
 };
+
+export const updateUser = async (req, res, next) => {
+  const { fullName } = req.body;
+  const { id } = req.params;
+
+  const user = await User.findById(id);
+  if (!user) {
+    return next(new AppError("User not found", 404));
+  }
+  if (req.fullName) {
+    user.fullName = fullName;
+  }
+
+  if (req.file) {
+    await cloudinary.v2.uploader.destroy(user.avatar.public_id);
+    try {
+      const result = await cloudinary.v2.uploader.upload(req.file.path, {
+        folder: "lms",
+        width: 250,
+        height: 250,
+        gravity: "faces",
+        crop: "fill",
+      });
+
+      if (result) {
+        user.avatar.public_id = result.public_id;
+        user.avatar.secure_url = result.secure_url;
+
+        // Remove file from server
+        fs.rm(`Uploads/${req.file.filename}`);
+      }
+    } catch (err) {
+      return next(new AppError(err.message, 500));
+    }
+  }
+
+  await user.save();
+
+  res.status(200).json({
+    success: true,
+    message: "User updated successfully",
+    user,
+  });
+};
