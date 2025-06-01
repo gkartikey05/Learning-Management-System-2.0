@@ -1,6 +1,5 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { BsPersonCircle } from "react-icons/bs";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -164,6 +163,10 @@ function Login() {
           >
             Login
           </button>
+
+          <Link to={"/forgot-password"} className="m-auto link text-accent cursor-pointer">
+            Forgot Password?
+          </Link>
 
           <p className="text-center">
             Don't have an account ?{" "}

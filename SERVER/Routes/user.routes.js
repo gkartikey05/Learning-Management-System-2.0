@@ -1,7 +1,10 @@
 import { Router } from "express";
 import {
+  changePassword,
+  forgotPassword,
   login,
   logout,
+  resetPassword,
   signUp,
   updateUser,
   userProfile,
@@ -16,5 +19,8 @@ router.post("/login", login);
 router.get("/profile", isLoggedIn, userProfile);
 router.get("/logout", isLoggedIn, logout);
 router.put("/update/:id", isLoggedIn, upload.single("avatar"), updateUser);
+router.post("/change-password", isLoggedIn, changePassword);
+router.post("/forgot-password", forgotPassword);
+router.post("/reset-password/:resetToken", resetPassword);
 
 export default router;

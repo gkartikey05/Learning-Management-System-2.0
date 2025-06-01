@@ -8,6 +8,9 @@ import Denied from "./Pages/Denied";
 import HomePage from "./Pages/HomePage";
 import Login from "./Pages/Login";
 import NotFound from "./Pages/NotFound";
+import ChangePassword from "./Pages/Password/ChangePassword";
+import ForgotPassword from "./Pages/Password/ForgotPassword";
+import ResetPassword from "./Pages/Password/ResetPassword";
 import Signup from "./Pages/Signup";
 import EditProfile from "./Pages/User/EditProfile";
 import Profile from "./Pages/User/Profile";
@@ -19,8 +22,12 @@ function App() {
       <Route path="/about" element={<AboutUs />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/forgot-password" element={<ForgotPassword />} />
+      <Route path="/reset-password/:resetToken" element={<ResetPassword />} />
+
       <Route element={<RequireAuth allowedRoles={["ADIN", "USER"]} />}>
         <Route path="/user/profile" element={<Profile />} />
+        <Route path="/user/change-password" element={<ChangePassword />} />
         <Route path="/user/edit-profile" element={<EditProfile />} />
       </Route>
 
