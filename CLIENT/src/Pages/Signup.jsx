@@ -101,18 +101,19 @@ function Signup() {
       });
       setPreviewImage("");
     }
-    
   }
 
   return (
     <HomeLayout>
-      <div className="flex items-center justify-center h-[90vh]">
+      <div className="flex items-center justify-center min-h-[89vh] py-8 px-4">
         <form
           noValidate
           onSubmit={createUserAccount}
-          className="flex flex-col justify-center gap-3 rounded-lg p-4 text-white w-96 shadow-[0_0_10px_black]"
+          className="flex flex-col justify-center gap-3 sm:gap-4 rounded-lg p-4 text-white w-full max-w-xs sm:max-w-sm shadow-[0_0_10px_black]"
         >
-          <h2 className="text-center text-2xl font-bold">Registration Page</h2>
+          <h2 className="text-center text-xl sm:text-2xl font-bold">
+            Registration Page
+          </h2>
 
           <label htmlFor="image_uploads" className="cursor-pointer">
             {previewImage ? (
@@ -120,12 +121,12 @@ function Signup() {
                 src={previewImage}
                 alt="user avatar"
                 title="Avatar"
-                className="w-24 h-24 rounded-full m-auto"
+                className="w-20 h-20 sm:w-28 sm:h-28 rounded-full m-auto"
               />
             ) : (
               <BsPersonCircle
                 title="Avatar"
-                className="w-24 h-24 rounded-full m-auto"
+                className="w-20 h-20 sm:w-28 sm:h-28 rounded-full m-auto"
               />
             )}
           </label>
@@ -138,18 +139,18 @@ function Signup() {
             onChange={getUserAvatar}
           />
 
-          <div className="flex flex-col gap-1 ">
+          <div className="flex flex-col gap-1">
             <label
               htmlFor="fullName"
               title="Full Name"
-              className="font-semibold"
+              className="font-semibold text-sm sm:text-base"
             >
               Full Name
             </label>
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <svg
-                  className="h-5 w-5 text-gray-400"
+                  className="h-4 w-4 sm:h-5 sm:w-5 text-gray-400"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
                   fill="currentColor"
@@ -168,20 +169,25 @@ function Signup() {
                 id="fullName"
                 autoComplete="current-fullName"
                 placeholder="Enter your full name"
-                className="w-full pl-10 pr-3 bg-transparent px-2 py-1 border outline-none rounded-sm"
+                className="w-full pl-8 sm:pl-10 pr-3 bg-transparent px-2 py-1 sm:py-1.5 text-sm sm:text-base border outline-none rounded-sm"
                 value={signupData.fullName}
                 onChange={handleUserInput}
               />
             </div>
           </div>
-          <div className="flex flex-col gap-1 ">
-            <label htmlFor="email" title="Email" className="font-semibold">
+
+          <div className="flex flex-col gap-1">
+            <label
+              htmlFor="email"
+              title="Email"
+              className="font-semibold text-sm sm:text-base"
+            >
               Email
             </label>
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <svg
-                  className="h-5 w-5 text-gray-400"
+                  className="h-4 w-4 sm:h-5 sm:w-5 text-gray-400"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
                   fill="currentColor"
@@ -197,24 +203,25 @@ function Signup() {
                 id="email"
                 autoComplete="current-email"
                 placeholder="Enter your email"
-                className="w-full pl-10 pr-3 bg-transparent px-2 py-1 border outline-none rounded-sm"
+                className="w-full pl-8 sm:pl-10 pr-3 bg-transparent px-2 py-1 sm:py-1.5 text-sm sm:text-base border outline-none rounded-sm"
                 value={signupData.email}
                 onChange={handleUserInput}
               />
             </div>
           </div>
-          <div className="flex flex-col gap-1 ">
+
+          <div className="flex flex-col gap-1">
             <label
               htmlFor="password"
               title="Password"
-              className="font-semibold"
+              className="font-semibold text-sm sm:text-base"
             >
               Password
             </label>
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <svg
-                  className="h-5 w-5 text-gray-400"
+                  className="h-4 w-4 sm:h-5 sm:w-5 text-gray-400"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
                   fill="currentColor"
@@ -233,7 +240,7 @@ function Signup() {
                 id="password"
                 autoComplete="current-password"
                 placeholder="Enter your password"
-                className="w-full pl-10 pr-3 bg-transparent px-2 py-1 border outline-none rounded-sm"
+                className="w-full pl-8 sm:pl-10 pr-8 bg-transparent px-2 py-1 sm:py-1.5 text-sm sm:text-base border outline-none rounded-sm"
                 value={signupData.password}
                 onChange={handleUserInput}
               />
@@ -245,7 +252,7 @@ function Signup() {
               >
                 {showPassword ? (
                   <svg
-                    className="h-5 w-5 text-gray-500 cursor-pointer"
+                    className="h-4 w-4 sm:h-5 sm:w-5 text-gray-500 cursor-pointer"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
                     fill="currentColor"
@@ -259,7 +266,7 @@ function Signup() {
                   </svg>
                 ) : (
                   <svg
-                    className="h-5 w-5 text-gray-500 cursor-pointer"
+                    className="h-4 w-4 sm:h-5 sm:w-5 text-gray-500 cursor-pointer"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
                     fill="currentColor"
@@ -278,13 +285,13 @@ function Signup() {
 
           <button
             type="submit"
-            className="bg-yellow-600 hover:bg-yellow-500 transition-all ease-in-out duration-300 rounded-sm mt-2 py-2 font-semibold text-lg cursor-pointer"
+            className="bg-yellow-600 hover:bg-yellow-500 transition-all ease-in-out duration-300 rounded-sm mt-2 py-2 text-sm sm:text-base font-semibold cursor-pointer"
           >
             Create account
           </button>
 
-          <p className="text-center">
-            Already have an account ?{" "}
+          <p className="text-center text-sm sm:text-[16px]">
+            Already have an account?{" "}
             <Link to={"/login"} className="link text-accent cursor-pointer">
               Login
             </Link>

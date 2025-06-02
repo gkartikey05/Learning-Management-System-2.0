@@ -50,30 +50,40 @@ function HomeLayout({ children }) {
         </div>
         <div className="drawer-side w-0">
           <label htmlFor="my-drawer" className="drawer-overlay"></label>
-          <ul className="menu h-full p-4 w-48 sm:w-80 bg-base-200 text-base-content relative">
-            <li className="w-fit absolute right-4 z-50">
+          <ul className="menu h-full p-2.5 w-48 sm:p-4 sm:w-80 bg-base-200 text-base-content relative">
+            <li className="w-fit absolute right-2.5 sm:right-4 z-50">
               <button onClick={hideDrawer}>
-                <AiFillCloseCircle size={24} />
+                <AiFillCloseCircle className="text-[22px] sm:text-[24px]" />
               </button>
             </li>
-            <li className="pb-2 text-[16px]">
-              <Link className="pb-1.5" to={"/"}>Home</Link>
+            <li className="pb-2 text-[14px] sm:text-[16px]">
+              <Link className="pb-1.5" to={"/"}>
+                Home
+              </Link>
             </li>
 
             {isLoggedIn && role === "ADMIN" && (
-              <li className="pb-2 text-[16px]">
-                <Link className="pb-1.5" to={"/admin/dashboard"}>Admin Dashboard</Link>
+              <li className="pb-2 text-[14px] sm:text-[16px]">
+                <Link className="pb-1.5" to={"/admin/dashboard"}>
+                  Admin Dashboard
+                </Link>
               </li>
             )}
 
-            <li className="pb-2 text-[16px]">
-              <Link className="pb-1.5" to={"/about"}>About Us</Link>
+            <li className="pb-2 text-[14px] sm:text-[16px]">
+              <Link className="pb-1.5" to={"/about"}>
+                About Us
+              </Link>
             </li>
-            <li className="pb-2 text-[16px]">
-              <Link className="pb-1.5" to={"/courses"}>Courses</Link>
+            <li className="pb-2 text-[14px] sm:text-[16px]">
+              <Link className="pb-1.5" to={"/courses"}>
+                Courses
+              </Link>
             </li>
-            <li className="pb-2 text-[16px]">
-              <Link className="pb-1.5" to={"/contact"}>Contact Us</Link>
+            <li className="pb-2 text-[14px] sm:text-[16px]">
+              <Link className="pb-1.5" to={"/contact"}>
+                Contact Us
+              </Link>
             </li>
 
             {!isLoggedIn && (

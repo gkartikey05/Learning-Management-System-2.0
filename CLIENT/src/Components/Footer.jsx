@@ -10,21 +10,34 @@ function Footer() {
   const currentDate = new Date();
   const year = currentDate.getFullYear();
   return (
-    <footer className="relative left-0 bottom-0 h-[10vh] py-5 flex flex-col sm:flex-row items-center justify-between text-white bg-gray-800 sm:px-20">
-      <section className="text-lg">
-        Copyright {year} | All rights reserved
+    <footer className="w-full py-5 px-4 sm:px-10 md:px-20 bg-gray-800 text-white flex flex-col-reverse sm:flex-row items-center justify-between gap-4 sm:gap-0 text-center">
+      <section className="text-base md:text-lg">
+        © Copyright {year} | All rights reserved
       </section>
-      <section className="flex items-center justify-center gap-5 text-2xl text-white">
-        <Link to={"#"} className="hover:text-yellow-500 transition-all duration-200 ease-in-out">
+
+      <section className="flex items-center justify-center gap-12 text-2xl sm:gap-4 sm:text-2xl">
+        <Link
+          to={"#"}
+          className="hover:text-yellow-500 transition duration-200 ease-in-out"
+        >
           <BsFacebook />
         </Link>
-        <Link to={"#"} className="hover:text-yellow-500 transition-all duration-200 ease-in-out">
+        <Link
+          to={"#"}
+          className="hover:text-yellow-500 transition duration-200 ease-in-out"
+        >
           <BsTwitterX />
         </Link>
-        <Link to={"#"} className="hover:text-yellow-500 transition-all duration-200 ease-in-out">
+        <Link
+          to={"#"}
+          className="hover:text-yellow-500 transition duration-200 ease-in-out"
+        >
           <BsInstagram />
         </Link>
-        <Link to={"#"} className="hover:text-yellow-500 transition-all duration-200 ease-in-out">
+        <Link
+          to={"#"}
+          className="hover:text-yellow-500 transition duration-200 ease-in-out"
+        >
           <BsLinkedin />
         </Link>
       </section>

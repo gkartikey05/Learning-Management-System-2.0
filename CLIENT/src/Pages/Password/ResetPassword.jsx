@@ -74,26 +74,28 @@ function ResetPassword() {
 
   return (
     <HomeLayout>
-      <div className="flex items-center justify-center h-[100vh]">
+      <div className="flex items-center justify-center min-h-[89vh] py-8 px-4">
         <form
           noValidate
           onSubmit={handleFormSubmit}
-          className="flex flex-col justify-center gap-5 rounded-lg p-4 text-white w-96 shadow-[0_0_10px_black]"
+          className="flex flex-col justify-center gap-3 sm:gap-4 rounded-lg p-4 text-white w-full max-w-xs sm:max-w-sm shadow-[0_0_10px_black]"
         >
-          <h2 className="text-center text-2xl font-bold">Reset Password</h2>
+          <h2 className="text-center text-xl sm:text-2xl font-bold">
+            Reset Password
+          </h2>
 
-          <div className="flex flex-col gap-1 ">
+          <div className="flex flex-col gap-1">
             <label
               htmlFor="password"
               title="Password"
-              className="font-semibold text-lg"
+              className="font-semibold text-base sm:text-lg"
             >
               New Password
             </label>
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <svg
-                  className="h-5 w-5 text-gray-400"
+                  className="h-4 w-4 sm:h-5 sm:w-5 text-gray-400"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
                   fill="currentColor"
@@ -112,7 +114,7 @@ function ResetPassword() {
                 id="password"
                 autoComplete="current-password"
                 placeholder="Enter your new password"
-                className="w-full pl-10 pr-3 bg-transparent px-2 py-1 border outline-none rounded-sm"
+                className="w-full pl-8 sm:pl-10 pr-8 bg-transparent px-2 py-1 sm:py-1.5 text-sm sm:text-base border outline-none rounded-sm"
                 value={data.password}
                 onChange={handleUserInput}
               />
@@ -124,7 +126,7 @@ function ResetPassword() {
               >
                 {showPassword ? (
                   <svg
-                    className="h-5 w-5 text-gray-500 cursor-pointer"
+                    className="h-4 w-4 sm:h-5 sm:w-5 text-gray-500 cursor-pointer"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
                     fill="currentColor"
@@ -138,7 +140,7 @@ function ResetPassword() {
                   </svg>
                 ) : (
                   <svg
-                    className="h-5 w-5 text-gray-500 cursor-pointer"
+                    className="h-4 w-4 sm:h-5 sm:w-5 text-gray-500 cursor-pointer"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
                     fill="currentColor"
@@ -155,18 +157,18 @@ function ResetPassword() {
             </div>
           </div>
 
-          <div className="flex flex-col gap-1 ">
+          <div className="flex flex-col gap-1">
             <label
               htmlFor="confirmPassword"
               title="Confirm Password"
-              className="font-semibold text-lg"
+              className="font-semibold text-base sm:text-lg"
             >
               Confirm New Password
             </label>
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <svg
-                  className="h-5 w-5 text-gray-400"
+                  className="h-4 w-4 sm:h-5 sm:w-5 text-gray-400"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
                   fill="currentColor"
@@ -185,7 +187,7 @@ function ResetPassword() {
                 id="confirmPassword"
                 autoComplete="current-confirm-password"
                 placeholder="Confirm your new password"
-                className="w-full pl-10 pr-3 bg-transparent px-2 py-1 border outline-none rounded-sm"
+                className="w-full pl-8 sm:pl-10 pr-8 bg-transparent px-2 py-1 sm:py-1.5 text-sm sm:text-base border outline-none rounded-sm"
                 value={data.confirmPassword}
                 onChange={handleUserInput}
               />
@@ -199,7 +201,7 @@ function ResetPassword() {
               >
                 {showConfirmPassword ? (
                   <svg
-                    className="h-5 w-5 text-gray-500 cursor-pointer"
+                    className="h-4 w-4 sm:h-5 sm:w-5 text-gray-500 cursor-pointer"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
                     fill="currentColor"
@@ -213,7 +215,7 @@ function ResetPassword() {
                   </svg>
                 ) : (
                   <svg
-                    className="h-5 w-5 text-gray-500 cursor-pointer"
+                    className="h-4 w-4 sm:h-5 sm:w-5 text-gray-500 cursor-pointer"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
                     fill="currentColor"
@@ -231,7 +233,7 @@ function ResetPassword() {
           </div>
 
           <button
-            className="w-full bg-yellow-600 hover:bg-yellow-500 transition-all ease-in-out duration-300 rounded-sm py-2 font-semibold text-lg cursor-pointer"
+            className="w-full bg-yellow-600 hover:bg-yellow-500 transition-all ease-in-out duration-300 rounded-sm py-2 font-semibold text-base sm:text-lg cursor-pointer"
             type="submit"
           >
             Reset Password

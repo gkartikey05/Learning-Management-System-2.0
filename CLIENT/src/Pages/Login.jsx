@@ -47,22 +47,28 @@ function Login() {
 
   return (
     <HomeLayout>
-      <div className="flex items-center justify-center h-[90vh]">
+      <div className="flex items-center justify-center min-h-[89vh] py-8 px-4">
         <form
           noValidate
           onSubmit={handleLogin}
-          className="flex flex-col justify-center gap-3 rounded-lg p-4 text-white w-96 shadow-[0_0_10px_black]"
+          className="flex flex-col justify-center gap-3 sm:gap-4 rounded-lg p-4 text-white w-full max-w-xs sm:max-w-sm shadow-[0_0_10px_black]"
         >
-          <h2 className="text-center text-2xl font-bold">Login Page</h2>
+          <h2 className="text-center text-xl sm:text-2xl font-bold">
+            Login Page
+          </h2>
 
-          <div className="flex flex-col gap-1 ">
-            <label htmlFor="email" title="Email" className="font-semibold">
+          <div className="flex flex-col gap-1">
+            <label
+              htmlFor="email"
+              title="Email"
+              className="font-semibold text-sm sm:text-base"
+            >
               Email
             </label>
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <svg
-                  className="h-5 w-5 text-gray-400"
+                  className="h-4 w-4 sm:h-5 sm:w-5 text-gray-400"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
                   fill="currentColor"
@@ -78,24 +84,25 @@ function Login() {
                 id="email"
                 autoComplete="current-email"
                 placeholder="Enter your email"
-                className="w-full pl-10 pr-3 bg-transparent px-2 py-1 border outline-none rounded-sm"
+                className="w-full pl-8 sm:pl-10 pr-3 bg-transparent px-2 py-1 sm:py-1.5 text-sm sm:text-base border outline-none rounded-sm"
                 value={loginData.email}
                 onChange={handleUserInput}
               />
             </div>
           </div>
-          <div className="flex flex-col gap-1 ">
+
+          <div className="flex flex-col gap-1">
             <label
               htmlFor="password"
               title="Password"
-              className="font-semibold"
+              className="font-semibold text-sm sm:text-base"
             >
               Password
             </label>
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <svg
-                  className="h-5 w-5 text-gray-400"
+                  className="h-4 w-4 sm:h-5 sm:w-5 text-gray-400"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
                   fill="currentColor"
@@ -114,7 +121,7 @@ function Login() {
                 id="password"
                 autoComplete="current-password"
                 placeholder="Enter your password"
-                className="w-full pl-10 pr-3 bg-transparent px-2 py-1 border outline-none rounded-sm"
+                className="w-full pl-8 sm:pl-10 pr-8 bg-transparent px-2 py-1 sm:py-1.5 text-sm sm:text-base border outline-none rounded-sm"
                 value={loginData.password}
                 onChange={handleUserInput}
               />
@@ -126,7 +133,7 @@ function Login() {
               >
                 {showPassword ? (
                   <svg
-                    className="h-5 w-5 text-gray-500 cursor-pointer"
+                    className="h-4 w-4 sm:h-5 sm:w-5 text-gray-500 cursor-pointer"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
                     fill="currentColor"
@@ -140,7 +147,7 @@ function Login() {
                   </svg>
                 ) : (
                   <svg
-                    className="h-5 w-5 text-gray-500 cursor-pointer"
+                    className="h-4 w-4 sm:h-5 sm:w-5 text-gray-500 cursor-pointer"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
                     fill="currentColor"
@@ -159,20 +166,20 @@ function Login() {
 
           <button
             type="submit"
-            className="bg-yellow-600 hover:bg-yellow-500 transition-all ease-in-out duration-300 rounded-sm mt-2 py-2 font-semibold text-lg cursor-pointer"
+            className="bg-yellow-600 hover:bg-yellow-500 transition-all ease-in-out duration-300 rounded-sm mt-2 py-2 text-md sm:text-base font-semibold cursor-pointer"
           >
             Login
           </button>
 
           <Link
             to={"/forgot-password"}
-            className="m-auto link text-accent cursor-pointer"
+            className="m-auto link text-accent cursor-pointer text-sm sm:text-[16px]"
           >
             Forgot Password?
           </Link>
 
-          <p className="text-center">
-            Don't have an account ?{" "}
+          <p className="text-center text-sm sm:text-[16px]">
+            Don't have an account?{" "}
             <Link to={"/signup"} className="link text-accent cursor-pointer">
               Sign up
             </Link>

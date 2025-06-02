@@ -43,7 +43,7 @@ function EditProfile() {
     });
   }
 
-  async function handleFormSubmit (e) {
+  async function handleFormSubmit(e) {
     e.preventDefault();
 
     if (!data.fullName || !data.avatar) {
@@ -64,28 +64,30 @@ function EditProfile() {
     await dispatch(updateProfile(newUserData));
     await dispatch(getUserDetails());
     navigate("/user/profile");
-  };
+  }
 
   return (
     <HomeLayout>
-      <div className="flex items-center justify-center h-[90vh]">
+      <div className="flex items-center justify-center min-h-[89vh] py-8 px-4">
         <form
           noValidate
           onSubmit={handleFormSubmit}
-          className="flex flex-col justify-around rounded-lg p-4 text-white min-w-80 h-[26rem] shadow-[0_0_10px_black]"
+          className="flex flex-col justify-center gap-3 sm:gap-4 rounded-lg p-4 text-white w-full max-w-xs sm:max-w-sm shadow-[0_0_10px_black]"
         >
-          <h2 className="text-center text-2xl font-bold">Edit Profile</h2>
+          <h2 className="text-center text-xl sm:text-2xl font-bold">
+            Edit Profile
+          </h2>
 
           {/* input for image file */}
           <label className="cursor-pointer" htmlFor="image_uploads">
             {data.previewImage ? (
               <img
-                className="w-28 h-28 rounded-full m-auto"
+                className="w-20 h-20 sm:w-28 sm:h-28 rounded-full m-auto"
                 src={data.previewImage}
                 alt="preview image"
               />
             ) : (
-              <BsPersonCircle className="w-28 h-28 rounded-full m-auto" />
+              <BsPersonCircle className="w-20 h-20 sm:w-28 sm:h-28 rounded-full m-auto" />
             )}
           </label>
           <input
@@ -98,18 +100,18 @@ function EditProfile() {
             accept=".jpg, .jpeg, .png, .webp, .mp4"
           />
 
-          <div className="flex flex-col gap-1 ">
+          <div className="flex flex-col gap-1">
             <label
               htmlFor="fullName"
               title="Full Name"
-              className="font-semibold text-lg"
+              className="font-semibold text-sm sm:text-lg"
             >
               Full Name
             </label>
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <svg
-                  className="h-6 w-6 text-gray-400"
+                  className="h-4 w-4 sm:h-5 sm:w-5 text-gray-400"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
                   fill="currentColor"
@@ -128,7 +130,7 @@ function EditProfile() {
                 id="fullName"
                 autoComplete="current-fullName"
                 placeholder="Enter your full name"
-                className="w-full pl-10 pr-3 bg-transparent px-2 py-2 border outline-none rounded-sm"
+                className="w-full pl-8 sm:pl-10 pr-3 bg-transparent px-2 py-1 sm:py-1.5 text-sm sm:text-base border outline-none rounded-sm"
                 value={data.fullName}
                 onChange={handleInputChange}
               />

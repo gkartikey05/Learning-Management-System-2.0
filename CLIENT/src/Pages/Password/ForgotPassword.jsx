@@ -33,15 +33,17 @@ function ForgotPassword() {
 
   return (
     <HomeLayout>
-      <div className="flex items-center justify-center h-[90vh]">
+      <div className="flex items-center justify-center min-h-[89vh] py-8 px-4">
         <form
           noValidate
           onSubmit={handleFormSubmit}
-          className="flex flex-col justify-center gap-5 rounded-lg p-4 text-white w-96 shadow-[0_0_10px_black]"
+          className="flex flex-col justify-center gap-3 sm:gap-4 rounded-lg p-4 text-white w-full max-w-xs sm:max-w-sm shadow-[0_0_10px_black]"
         >
-          <h2 className="text-center text-2xl font-bold">Forgot Password</h2>
+          <h2 className="text-center text-xl sm:text-2xl font-bold">
+            Forgot Password
+          </h2>
 
-          <p className="text-justify">
+          <p className="text-justify text-sm sm:text-base">
             Enter your registered email, we will send you a verification link on
             your registered email from which you can reset your password
           </p>
@@ -49,7 +51,7 @@ function ForgotPassword() {
           <div className="relative">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
               <svg
-                className="h-5 w-5 text-gray-400"
+                className="h-4 w-4 sm:h-5 sm:w-5 text-gray-400"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
                 fill="currentColor"
@@ -65,21 +67,21 @@ function ForgotPassword() {
               id="email"
               autoComplete="current-email"
               placeholder="Enter your registered email"
-              className="w-full pl-10 pr-3 bg-transparent px-2 py-1 border outline-none rounded-sm"
+              className="w-full pl-8 sm:pl-10 pr-3 bg-transparent px-2 py-1 sm:py-1.5 text-sm sm:text-base border outline-none rounded-sm"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
 
           <button
-            className="w-full bg-yellow-600 hover:bg-yellow-500 transition-all ease-in-out duration-300 rounded-sm py-2 font-semibold text-lg cursor-pointer"
+            className="w-full bg-yellow-600 hover:bg-yellow-500 transition-all ease-in-out duration-300 rounded-sm py-2 font-semibold text-base sm:text-lg cursor-pointer"
             type="submit"
           >
             Get Verification Link
           </button>
 
-          <p className="text-center">
-            Already have an account ?{" "}
+          <p className="text-center text-sm sm:text-[16px]">
+            Already have an account?{" "}
             <Link to={"/login"} className="link text-accent cursor-pointer">
               Login
             </Link>
