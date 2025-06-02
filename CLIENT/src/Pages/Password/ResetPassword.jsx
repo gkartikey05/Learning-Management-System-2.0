@@ -36,7 +36,7 @@ function ResetPassword() {
   async function handleFormSubmit(e) {
     e.preventDefault();
 
-    if (!data.password || !data.confirmPassword || !data.resetToken) {
+    if (!data.password || !data.confirmPassword) {
       toast.error("All fields are required");
       return;
     } else if (!data.password.match(/^(?=.*[a-z]).+$/)) {
@@ -64,12 +64,12 @@ function ResetPassword() {
     const response = await dispatch(resetPassword(data));
     if (response?.payload?.success) {
       navigate("/");
+      setData({
+        password: "",
+        confirmPassword: "",
+        resetToken: "",
+      });
     }
-    setData({
-      password: "",
-      confirmPassword: "",
-      resetToken: "",
-    });
   }
 
   return (

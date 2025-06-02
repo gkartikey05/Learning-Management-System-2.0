@@ -1,14 +1,13 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import HomeLayout from "../../Layouts/HomeLayout";
 import { forgotPassword } from "../../Redux/Slices/AuthSlice";
 
 function ForgotPassword() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [email, setEmail] = useState("");
 
   async function handleFormSubmit(e) {
@@ -28,9 +27,8 @@ function ForgotPassword() {
 
     const response = await dispatch(forgotPassword(email));
     if (response?.payload?.success) {
-      navigate("/reset-password");
+      setEmail("");
     }
-    setEmail("");
   }
 
   return (
@@ -41,7 +39,7 @@ function ForgotPassword() {
           onSubmit={handleFormSubmit}
           className="flex flex-col justify-center gap-5 rounded-lg p-4 text-white w-96 shadow-[0_0_10px_black]"
         >
-          <h2 className="text-center text-2xl font-bold">Forget Password</h2>
+          <h2 className="text-center text-2xl font-bold">Forgot Password</h2>
 
           <p className="text-justify">
             Enter your registered email, we will send you a verification link on

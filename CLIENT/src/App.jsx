@@ -25,7 +25,7 @@ function App() {
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/reset-password/:resetToken" element={<ResetPassword />} />
 
-      <Route element={<RequireAuth allowedRoles={["ADIN", "USER"]} />}>
+      <Route element={<RequireAuth allowedRoles={["ADMIN", "USER"]} />}>
         <Route path="/user/profile" element={<Profile />} />
         <Route path="/user/change-password" element={<ChangePassword />} />
         <Route path="/user/edit-profile" element={<EditProfile />} />

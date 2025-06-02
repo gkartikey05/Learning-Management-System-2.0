@@ -33,7 +33,7 @@ function ChangePassword() {
     });
   }
 
-  function handleFormSubmit(e) {
+  async function handleFormSubmit(e) {
     e.preventDefault();
 
     if (!userPassword.oldPassword || !userPassword.newPassword) {
@@ -60,14 +60,14 @@ function ChangePassword() {
       return;
     }
 
-    const response = dispatch(changePassword(userPassword));
-    if (response?.payload?.success) {
+    const response = await dispatch(changePassword(userPassword));
+    if (response.payload.success) {
       navigate("/user/profile");
+      setUserPassword({
+        oldPassword: "",
+        newPassword: "",
+      });
     }
-    setUserPassword({
-      oldPassword: "",
-      newPassword: "",
-    });
   }
 
   return (

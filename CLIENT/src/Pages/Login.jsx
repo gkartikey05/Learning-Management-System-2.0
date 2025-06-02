@@ -38,11 +38,11 @@ function Login() {
     const response = await dispatch(loginAccount(loginData));
     if (response?.payload?.success) {
       navigate("/");
+      setLoginData({
+        email: "",
+        password: "",
+      });
     }
-    setLoginData({
-      email: "",
-      password: "",
-    });
   }
 
   return (
@@ -164,7 +164,10 @@ function Login() {
             Login
           </button>
 
-          <Link to={"/forgot-password"} className="m-auto link text-accent cursor-pointer">
+          <Link
+            to={"/forgot-password"}
+            className="m-auto link text-accent cursor-pointer"
+          >
             Forgot Password?
           </Link>
 

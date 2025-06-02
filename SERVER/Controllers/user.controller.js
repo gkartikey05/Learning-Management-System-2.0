@@ -186,13 +186,12 @@ export const changePassword = async (req, res, next) => {
     return next(new AppError("All fields are required", 400));
   }
 
-  const user = User.findById(id).select("+password");
+  const user = await User.findById(id).select("+password");
   if (!user) {
     return next(new AppError("User not found", 404));
   }
 
-  const isPasswordValid = user.comparePassword(oldPassword);
-  if (!isPasswordValid) {
+  if (!(await user.comparePassword(oldPassword))) {
     return next(new AppError("Old password is incorrect", 400));
   }
 
@@ -247,20 +246,12 @@ export const forgotPassword = async (req, res, next) => {
 
 export const resetPassword = async (req, res, next) => {
   const { resetToken } = req.params;
-  const { password, confirmPassword } = req.body;
+  const { password } = req.body;
 
   const forgotPasswordToken = await crypto
     .createHash("sha256")
     .update(resetToken)
     .digest("hex");
-
-  if (!password || !confirmPassword) {
-    return next(new AppError("All fields are required", 400));
-  }
-
-  if (password !== confirmPassword) {
-    return next(new AppError("Password and confirm password do not match", 400));
-  }
 
   console.log(forgotPasswordToken);
 

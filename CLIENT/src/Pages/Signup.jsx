@@ -93,14 +93,15 @@ function Signup() {
     const response = await dispatch(createAccount(formData));
     if (response?.payload?.success) {
       navigate("/");
+      setSignupData({
+        fullName: "",
+        email: "",
+        password: "",
+        avatar: "",
+      });
+      setPreviewImage("");
     }
-    setSignupData({
-      fullName: "",
-      email: "",
-      password: "",
-      avatar: "",
-    });
-    setPreviewImage("");
+    
   }
 
   return (

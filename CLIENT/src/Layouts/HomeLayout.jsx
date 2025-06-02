@@ -51,29 +51,29 @@ function HomeLayout({ children }) {
         <div className="drawer-side w-0">
           <label htmlFor="my-drawer" className="drawer-overlay"></label>
           <ul className="menu h-full p-4 w-48 sm:w-80 bg-base-200 text-base-content relative">
-            <li className="w-fit absolute right-2 z-50">
+            <li className="w-fit absolute right-4 z-50">
               <button onClick={hideDrawer}>
                 <AiFillCloseCircle size={24} />
               </button>
             </li>
-            <li>
-              <Link to={"/"}>Home</Link>
+            <li className="pb-2 text-[16px]">
+              <Link className="pb-1.5" to={"/"}>Home</Link>
             </li>
 
             {isLoggedIn && role === "ADMIN" && (
-              <li>
-                <Link to={"/admin/dashboard"}>Admin Dashboard</Link>
+              <li className="pb-2 text-[16px]">
+                <Link className="pb-1.5" to={"/admin/dashboard"}>Admin Dashboard</Link>
               </li>
             )}
 
-            <li>
-              <Link to={"/about"}>About Us</Link>
+            <li className="pb-2 text-[16px]">
+              <Link className="pb-1.5" to={"/about"}>About Us</Link>
             </li>
-            <li>
-              <Link to={"/courses"}>Courses</Link>
+            <li className="pb-2 text-[16px]">
+              <Link className="pb-1.5" to={"/courses"}>Courses</Link>
             </li>
-            <li>
-              <Link to={"/contact"}>Contact Us</Link>
+            <li className="pb-2 text-[16px]">
+              <Link className="pb-1.5" to={"/contact"}>Contact Us</Link>
             </li>
 
             {!isLoggedIn && (
