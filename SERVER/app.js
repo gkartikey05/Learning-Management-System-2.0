@@ -4,6 +4,7 @@ import morgan from "morgan";
 import cookieParser from "cookie-parser";
 import { config } from "dotenv";
 import userRoutes from "./Routes/user.routes.js";
+import courseRoutes from "./Routes/user.routes.js";
 import { errorMiddleware } from "./Middlewares/error.middleware.js";
 
 config();
@@ -25,6 +26,7 @@ app.use(morgan("dev"));
 
 //* routes of all the modules
 app.use("/api/v1/user", userRoutes);
+app.use("api/v1/course", courseRoutes);
 
 app.use(errorMiddleware);
 

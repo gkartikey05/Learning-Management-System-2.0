@@ -10,7 +10,7 @@ const cookieOptions = {
   httpOnly: true,
   secure: true,
 };
-
+ 
 export const signUp = async (req, res, next) => {
   try {
     const { fullName, email, password } = req.body;
