@@ -1,42 +1,24 @@
-import { Router } from 'express';
+import { Router } from "express";
 import {
-  addLectureToCourseById,
   createCourse,
   deleteCourseById,
   getAllCourses,
-  getLecturesByCourseId,
-  removeLectureFromCourse,
+  getCourseById,
   updateCourseById,
-} from '../controllers/course.controller.js';
-import {
-  authorizeRoles,
-  authorizeSubscribers,
-  isLoggedIn,
-} from '../middlewares/auth.middleware.js';
-import upload from '../middlewares/multer.middleware.js';
+} from "../Controllers/course.controller.js";
+import { isLoggedIn } from "../Middlewares/auth.middleware.js";
+import upload from "../Middlewares/multer.middleware.js";
 
 const router = Router();
 
 router
-  .route('/')
+  .route("/")
   .get(getAllCourses)
-  .post(
-    isLoggedIn,
-    authorizeRoles('ADMIN'),
-    upload.single('thumbnail'),
-    createCourse
-  )
-  .delete(isLoggedIn, authorizeRoles('ADMIN'), removeLectureFromCourse);
-
+  .post(isLoggedIn, upload.single("thumbnail"), createCourse);
 router
-  .route('/:id')
-  .get(isLoggedIn, authorizeSubscribers, getLecturesByCourseId)
-  .post(
-    isLoggedIn,
-    authorizeRoles('ADMIN'),
-    upload.single('lecture'),
-    addLectureToCourseById
-  )
-  .put(isLoggedIn, authorizeRoles('ADMIN'), updateCourseById);
+  .route("/:id")
+  .get(isLoggedIn, getCourseById)
+  .put(isLoggedIn, upload.single("thumbnail"), updateCourseById)
+  .delete(isLoggedIn, deleteCourseById);
 
 export default router;
