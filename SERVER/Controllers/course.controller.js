@@ -41,9 +41,6 @@ export const getCourseById = async (req, res, next) => {
 export const createCourse = async (req, res, next) => {
   try {
     const { title, description, category, thumbnail, createdBy } = req.body;
-    if (!title || !description || !category || !thumbnail || !createdBy) {
-      return next(new AppError("All fields are required", 400));
-    }
 
     const course = await Course.create({
       title,
@@ -71,8 +68,8 @@ export const createCourse = async (req, res, next) => {
         });
 
         if (result) {
-          user.avatar.public_id = result.public_id;
-          user.avatar.secure_url = result.secure_url;
+          course.thumbnail.public_id = result.public_id;
+          course.thumbnail.secure_url = result.secure_url;
 
           fs.rm(`Uploads/${req.file.filename}`);
         }
@@ -81,9 +78,7 @@ export const createCourse = async (req, res, next) => {
       }
     }
 
-    await user.save();
-    user.password = undefined;
-
+    await course.save();
     res.status(201).json({
       success: true,
       message: "Course created successfully",
@@ -96,19 +91,71 @@ export const createCourse = async (req, res, next) => {
 
 export const updateCourseById = async (req, res, next) => {
   try {
-    const { title, description, category, thumbnail, createdBy } = req.body;
     const { id } = req.params;
+    const course = await Course.findByIdAndUpdate(
+      id,
+      {
+        $set: req.body,
+      },
+      {
+        runValidators: true,
+      }
+    );
+
+    if (!course) {
+      return next(new AppError("Course not found", 404));
+    }
+
+    await course.save();
+    res.status(200).json({
+      success: true,
+      message: "Course updated successfully",
+      course,
+    });
+  } catch (err) {
+    return next(new AppError(err.message, 500));
+  }
+};
+
+export const deleteCourseById = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const course = await Course.findByIdAndDelete(id);
+    if (course === null) {
+      return next(new AppError("Course does not exist anymore", 400));
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Course deleted successfully",
+      course,
+    });
+  } catch (err) {
+    return next(new AppError(err.message, 500));
+  }
+};
+
+export const addLecturesToCourseById = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { title, description } = req.body;
 
     const course = await Course.findById(id);
     if (!course) {
       return next(new AppError("Course not found", 404));
     }
-    if (fullName) {
-      course.fullName = fullName;
-    }
+
+    const lectureData = {
+      title,
+      description,
+      lecture: {
+        public_id: title,
+        secure_url:
+          "https://res.cloudinary.com/dx0h4xmyc/image/upload/v1748796534/lms/avatar_drzgxv.jpg",
+      },
+    };
 
     if (req.file) {
-      await cloudinary.v2.uploader.destroy(course.avatar.public_id);
       try {
         const result = await cloudinary.v2.uploader.upload(req.file.path, {
           folder: "lms",
@@ -119,10 +166,9 @@ export const updateCourseById = async (req, res, next) => {
         });
 
         if (result) {
-          course.avatar.public_id = result.public_id;
-          course.avatar.secure_url = result.secure_url;
+          lectureData.lecture.public_id = result.public_id;
+          lectureData.lecture.secure_url = result.secure_url;
 
-          // Remove file from server
           fs.rm(`Uploads/${req.file.filename}`);
         }
       } catch (err) {
@@ -130,14 +176,16 @@ export const updateCourseById = async (req, res, next) => {
       }
     }
 
+    course.lectures.push(lectureData);
+    course.numbersOfLectures = course.lectures.length;
     await course.save();
 
-    res.status(200).json({
+    res.status(201).json({
       success: true,
-      message: "Course updated successfully",
+      message: "Lecture created successfully",
       course,
     });
-  } catch (err) {}
+  } catch (err) {
+    return next(new AppError(err.message, 500));
+  }
 };
-
-export const deleteCourseById = (req, res, next) => {};
