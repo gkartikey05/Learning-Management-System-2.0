@@ -31,6 +31,10 @@ const userSchema = new Schema(
       select: false,
       match: [/^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/],
     },
+    subscription: {
+      id: String,
+      status: String,
+    },
     avatar: {
       public_id: {
         type: String,

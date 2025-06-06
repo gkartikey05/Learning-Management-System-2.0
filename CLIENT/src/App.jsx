@@ -4,6 +4,8 @@ import { Route, Routes } from "react-router-dom";
 
 import RequireAuth from "./Components/Auth/RequireAuth";
 import AboutUs from "./Pages/AboutUs";
+import CourseDescription from "./Pages/Course/CourseDescription";
+import CourseList from "./Pages/Course/CourseList";
 import Denied from "./Pages/Denied";
 import HomePage from "./Pages/HomePage";
 import Login from "./Pages/Login";
@@ -24,6 +26,9 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/reset-password/:resetToken" element={<ResetPassword />} />
+
+      <Route path="/courses" element={<CourseList />} />
+      <Route path="/course/description" element={<CourseDescription />} />
 
       <Route element={<RequireAuth allowedRoles={["ADMIN", "USER"]} />}>
         <Route path="/user/profile" element={<Profile />} />
