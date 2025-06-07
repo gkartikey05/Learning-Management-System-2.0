@@ -6,6 +6,8 @@ import RequireAuth from "./Components/Auth/RequireAuth";
 import AboutUs from "./Pages/AboutUs";
 import CourseDescription from "./Pages/Course/CourseDescription";
 import CourseList from "./Pages/Course/CourseList";
+import AddLectures from "./Pages/Dashboard/AddLectures";
+import DisplayLectures from "./Pages/Dashboard/DisplayLectures";
 import Denied from "./Pages/Denied";
 import HomePage from "./Pages/HomePage";
 import Login from "./Pages/Login";
@@ -34,6 +36,9 @@ function App() {
         <Route path="/user/profile" element={<Profile />} />
         <Route path="/user/change-password" element={<ChangePassword />} />
         <Route path="/user/edit-profile" element={<EditProfile />} />
+
+        <Route path="/course/display-lectures" element={<DisplayLectures />} />
+        <Route path="/course/add-lecture" element={<AddLectures />} />
       </Route>
 
       {/* Denied Page */}

@@ -43,7 +43,7 @@ const CourseDescription = () => {
               {role === "ADMIN" || data?.subscription?.status === "active" ? (
                 <button
                   onClick={() =>
-                    navigate("/course/displaylectures", {
+                    navigate("/course/display-lectures", {
                       state: { ...state },
                     })
                   }
