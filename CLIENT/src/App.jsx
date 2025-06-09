@@ -16,6 +16,7 @@ import NotFound from "./Pages/NotFound";
 import ChangePassword from "./Pages/Password/ChangePassword";
 import ForgotPassword from "./Pages/Password/ForgotPassword";
 import ResetPassword from "./Pages/Password/ResetPassword";
+import Checkout from "./Pages/Payment/Checkout";
 import Signup from "./Pages/Signup";
 import EditProfile from "./Pages/User/EditProfile";
 import Profile from "./Pages/User/Profile";
@@ -40,6 +41,11 @@ function App() {
         <Route path="/user/edit-profile" element={<EditProfile />} />
 
         <Route path="/course/display-lectures" element={<DisplayLectures />} />
+
+        <Route path="/checkout" element={<Checkout />} />
+      </Route>
+
+      <Route element={<RequireAuth allowedRoles={["ADMIN"]} />}>
         <Route path="/course/add-lecture" element={<AddLectures />} />
       </Route>
 
