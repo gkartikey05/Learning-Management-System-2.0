@@ -76,12 +76,12 @@ function Checkout() {
     <HomeLayout>
       <form
         onSubmit={handleSubscription}
-        className="min-h-[90vh] flex items-center justify-center text-white"
+        className="min-h-[89vh] flex items-center justify-center text-white"
       >
         <div className="w-80 h-[26rem] flex flex-col justify-center shadow-[0_0_10px_black] rounded-lg relative">
-          <h1 className="bg-yellow-500 absolute top-0 w-full text-center py-4 text-2xl font-bold rounded-tl-lg rounded-tr-lg">
+          <h2 className="bg-yellow-500 absolute top-0 w-full text-center py-4 text-2xl font-bold rounded-tl-lg rounded-tr-lg">
             Subscription Bundle
-          </h1>
+          </h2>
 
           <div className="px-4 space-y-5 text-center">
             <p className="text-[17px]">
@@ -105,7 +105,7 @@ function Checkout() {
 
           <button
             type="submit"
-            className="bg-yellow-500 hover:bg-yellow-600 transition-all ease-in-out duration-300 absolute bottom-0 w-full text-center py-2 text-xl font-bold rounded-bl-lg rounded-br-lg"
+            className="bg-yellow-500 hover:bg-yellow-600 transition-all ease-in-out duration-300 absolute bottom-0 w-full text-center py-2 text-xl font-bold rounded-bl-lg rounded-br-lg cursor-pointer"
           >
             Buy Now
           </button>
