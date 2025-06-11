@@ -1,3 +1,7 @@
+import User from '../Models/user.model.js';
+import AppError from '../Utils/error.util.js';
+import { razorpay } from '../server.js'
+
 export const buySubscription = async (req, res, next) => {
   const { id } = req.user;
   const user = await User.findById(id);
