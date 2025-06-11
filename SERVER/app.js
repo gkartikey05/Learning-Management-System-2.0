@@ -6,6 +6,7 @@ import { config } from "dotenv";
 import userRoutes from "./Routes/user.routes.js";
 import courseRoutes from "./Routes/course.routes.js";
 import miscellanousRoutes from "./Routes/miscellaneous.routes.js";
+import paymentRoutes from "./Routes/payment.routes.js";
 import { errorMiddleware } from "./Middlewares/error.middleware.js";
 
 config();
@@ -29,6 +30,7 @@ app.use(morgan("dev"));
 app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/courses", courseRoutes);
 app.use("/api/v1", miscellanousRoutes);
+app.use("/api/v1", paymentRoutes)
 
 app.use(errorMiddleware);
 
