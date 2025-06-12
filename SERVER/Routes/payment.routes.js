@@ -3,14 +3,14 @@ import {
   authorizedRoles, 
   authorizeSubscribers, 
   isLoggedIn 
-} from '../Middlewares/auth.middleware';
+} from '../Middlewares/auth.middleware.js';
 import { 
   allPayments, 
   buySubscription, 
   cancelSubscription, 
   getRazorpayApiKey, 
   verifySubscription 
-} from '../Controllers/payment.controller';
+} from '../Controllers/payment.controller.js';
 
 const router = Router()
 

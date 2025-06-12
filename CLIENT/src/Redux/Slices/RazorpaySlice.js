@@ -14,7 +14,7 @@ const initialState = {
 
 export const getRazorPayId = createAsyncThunk("/razorpay/getId", async () => {
   try {
-    const res = axiosInstance.get("/payments/razrorpay-key");
+    const res = axiosInstance.get("/payments/razorpay-key");
     return (await res).data;
   } catch (error) {
     toast.error(error?.response?.data?.message);

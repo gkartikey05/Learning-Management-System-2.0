@@ -14,12 +14,11 @@ import {
 function Checkout() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const razorPayKey = useSelector((state) => state.razorpay.key);
+  const razorPayKey = useSelector((state) => state?.razorpay?.key);
+  const userData = useSelector((state) => state?.auth?.data);
   const subscription_id = useSelector(
-    (state) => state.razorpay.subscription_id
+    (state) => state?.razorpay?.subscription_id
   );
-  const userData = useSelector((state) => state.auth.data);
-  const { isPaymentVerified } = useSelector((state) => state.razorpay);
 
   const paymentDetails = {
     razorpay_payment_id: "",
@@ -47,11 +46,10 @@ function Checkout() {
 
         toast.success("Payment Successfull");
 
-        await dispatch(verifyUserPayment(paymentDetails));
-
-        !isPaymentVerified
+        const res = await dispatch(verifyUserPayment(paymentDetails));
+        res?.payload?.success
           ? navigate("/checkout/success")
-          : navigate("/checkout/fail");
+          : navigate("/checkout/failure");
       },
       prefill: {
         name: userData.fullName,
