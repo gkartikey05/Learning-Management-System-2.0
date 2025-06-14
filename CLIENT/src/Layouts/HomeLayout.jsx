@@ -70,6 +70,14 @@ function HomeLayout({ children }) {
               </li>
             )}
 
+            {isLoggedIn && role === "ADMIN" && (
+              <li className="pb-2 text-[14px] sm:text-[16px]">
+                <Link className="pb-1.5" to={"/course/create"}>
+                  Create Course
+                </Link>
+              </li>
+            )}
+
             <li className="pb-2 text-[14px] sm:text-[16px]">
               <Link className="pb-1.5" to={"/about"}>
                 About Us
