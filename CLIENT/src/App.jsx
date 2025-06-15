@@ -30,7 +30,6 @@ function App() {
       <Route path="/" element={<HomePage />} />
       <Route path="/about" element={<AboutUs />} />
       <Route path="/courses" element={<CourseList />} />
-      <Route path="/course/description" element={<CourseDescription />} />
       <Route path="/contact" element={<Contact />} />
 
       <Route path="/signup" element={<Signup />} />
@@ -43,6 +42,7 @@ function App() {
         <Route path="/user/change-password" element={<ChangePassword />} />
         <Route path="/user/edit-profile" element={<EditProfile />} />
 
+        <Route path="/course/description" element={<CourseDescription />} />
         <Route path="/course/display-lectures" element={<DisplayLectures />} />
 
         <Route path="/checkout" element={<Checkout />} />
