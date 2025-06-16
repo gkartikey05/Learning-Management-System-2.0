@@ -1,5 +1,6 @@
 import AppError from "../Utils/error.util.js";
 import sendEmail from "../Utils/sendEmail.js";
+import User from "../Models/user.model.js";
 
 export const contactUs = async (req, res, next) => {
   const { name, email, message } = req.body;
@@ -17,6 +18,25 @@ export const contactUs = async (req, res, next) => {
     res.status(200).json({
       success: true,
       message: "Message sent successfully",
+    });
+  } catch (err) {
+    return next(new AppError(err.message, 500));
+  }
+};
+
+export const userStats = async (req, res, next) => {
+  try {
+    const allUsersCount = await User.countDocuments();
+
+    const subscribedUsersCount = await User.countDocuments({
+      "subscription.status": "active",
+    });
+
+    res.status(200).json({
+      success: true,
+      message: "User statistics retrieved successfully",
+      allUsersCount,
+      subscribedUsersCount,
     });
   } catch (err) {
     return next(new AppError(err.message, 500));
