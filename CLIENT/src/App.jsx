@@ -9,6 +9,7 @@ import CourseDescription from "./Pages/Course/CourseDescription";
 import CourseList from "./Pages/Course/CourseList";
 import CreateCourse from "./Pages/Course/CreateCourse";
 import AddLectures from "./Pages/Dashboard/AddLectures";
+import AdminDashboard from "./Pages/Dashboard/AdminDashboard";
 import DisplayLectures from "./Pages/Dashboard/DisplayLectures";
 import Denied from "./Pages/Denied";
 import HomePage from "./Pages/HomePage";
@@ -53,6 +54,7 @@ function App() {
       <Route element={<RequireAuth allowedRoles={["ADMIN"]} />}>
         <Route path="/course/add-lecture" element={<AddLectures />} />
         <Route path="/course/create" element={<CreateCourse />} />
+        <Route path="/admin/dashboard" element={<AdminDashboard />} />
       </Route>
 
       {/* Denied Page */}
