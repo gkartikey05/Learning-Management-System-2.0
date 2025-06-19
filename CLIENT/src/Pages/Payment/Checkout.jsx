@@ -16,9 +16,7 @@ function Checkout() {
   const navigate = useNavigate();
   const razorPayKey = useSelector((state) => state?.razorpay?.key);
   const userData = useSelector((state) => state?.auth?.data);
-  const subscription_id = useSelector(
-    (state) => state?.razorpay?.subscription_id
-  );
+  const subscription_id = useSelector((state) => state?.razorpay?.subscription_id);
 
   const paymentDetails = {
     razorpay_payment_id: "",
@@ -28,46 +26,48 @@ function Checkout() {
 
   const handleSubscription = async (event) => {
     event.preventDefault();
-
     if (!razorPayKey || !subscription_id) {
+      toast.error("Something went wrong");
       return;
     }
 
     const options = {
       key: razorPayKey,
       subscription_id: subscription_id,
-      name: "Coursify Pvt. Ltd.",
-      description: "Monthly Subscription",
-      handler: async function (response) {
-        paymentDetails.razorpay_payment_id = response.razorpay_payment_id;
-        paymentDetails.razorpay_subscription_id =
-          response.razorpay_subscription_id;
-        paymentDetails.razorpay_signature = response.razorpay_signature;
-
-        toast.success("Payment Successfull");
-
-        const res = await dispatch(verifyUserPayment(paymentDetails));
-        res?.payload?.success
-          ? navigate("/checkout/success")
-          : navigate("/checkout/failure");
+      name: "LMS Pvt. Ltd.",
+      description: "Yearly Subscription",
+      theme: {
+        color: "#F37254",
       },
       prefill: {
         name: userData.fullName,
         email: userData.email,
       },
-      theme: {
-        color: "#F37254",
+      handler: async function (response) {
+        paymentDetails.razorpay_payment_id = response.razorpay_payment_id;
+        paymentDetails.razorpay_subscription_id = response.razorpay_subscription_id;
+        paymentDetails.razorpay_signature = response.razorpay_signature;
+
+        toast.success("Payment Successfull");
+        const res = await dispatch(verifyUserPayment(paymentDetails));
+        
+        res?.payload?.success
+          ? navigate("/checkout/success")
+          : navigate("/checkout/failure");
       },
     };
+
     const paymentObject = new window.Razorpay(options);
     paymentObject.open();
   };
 
+  async function load() {
+    await dispatch(getRazorPayId());
+    await dispatch(purchaseCourseBundle());
+  }
+
   useEffect(() => {
-    (async () => {
-      await dispatch(getRazorPayId());
-      await dispatch(purchaseCourseBundle());
-    })();
+    load();
   }, []);
 
   return (

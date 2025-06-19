@@ -109,7 +109,7 @@ function Signup() {
         <form
           noValidate
           onSubmit={createUserAccount}
-          className="flex flex-col justify-center gap-3 sm:gap-4 rounded-lg p-4 text-white w-full max-w-xs sm:max-w-sm shadow-[0_0_10px_black]"
+          className="flex flex-col justify-center gap-3 sm:gap-2 rounded-lg p-4 text-white w-full max-w-xs sm:max-w-sm shadow-[0_0_10px_black]"
         >
           <h2 className="text-center text-xl sm:text-2xl font-bold">
             Registration Page
