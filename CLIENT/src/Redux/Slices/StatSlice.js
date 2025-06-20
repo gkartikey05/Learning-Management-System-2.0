@@ -5,7 +5,7 @@ import axiosInstance from "../../Helpers/axiosInstance";
 
 const initialState = {
   allUsersCount: 0,
-  subscribedCount: 0,
+  subscribedUsersCount: 0,
 };
 
 export const getStatsData = createAsyncThunk("stats/get", async () => {
@@ -31,10 +31,8 @@ const statSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getStatsData.fulfilled, (state, action) => {
-      if (action?.payload?.success) {
-        state.allUsersCount = action.payload.allUsersCount;
-        state.subscribedCount = action.payload.subscribedUsersCount;
-      }
+      state.allUsersCount = action.payload.allUsersCount;
+      state.subscribedUsersCount = action.payload.subscribedUsersCount;
     });
   },
 });

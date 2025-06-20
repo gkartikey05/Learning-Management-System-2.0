@@ -1,8 +1,20 @@
+import {
+  ArcElement,
+  BarElement,
+  CategoryScale,
+  Chart as ChartJS,
+  Legend,
+  LinearScale,
+  Title,
+  Tooltip,
+} from "chart.js";
 import { useEffect } from "react";
 import { Bar, Pie } from "react-chartjs-2";
+import { BsCollectionPlayFill, BsTrash } from "react-icons/bs";
 import { FaUsers } from "react-icons/fa";
 import { FcSalesPerformance } from "react-icons/fc";
 import { GiMoneyStack } from "react-icons/gi";
+import { MdOutlineModeEdit } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -11,15 +23,25 @@ import { deleteCourse, getAllCourses } from "../../Redux/Slices/CourseSlice";
 import { getPaymentRecord } from "../../Redux/Slices/RazorpaySlice";
 import { getStatsData } from "../../Redux/Slices/StatSlice";
 
+ChartJS.register(
+  ArcElement,
+  Tooltip,
+  Legend,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title
+);
+
 function AdminDashboard() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const { allUsersCount, subscribedUsersCount } = useSelector(
-    (state) => state.stat
+    (state) => state?.stat
   );
   const { allPayments, monthlySalesRecord } = useSelector(
-    (state) => state.razorpay
+    (state) => state?.razorpay
   );
 
   const userData = {
@@ -62,13 +84,13 @@ function AdminDashboard() {
     ],
   };
 
-  const myCourses = useSelector((state) => state.course.coursesData);
+  const myCourses = useSelector((state) => state?.course?.coursesData);
 
   const handleCourseDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete the course?")) {
       const res = await dispatch(deleteCourse(id));
 
-      if (res.payload.success) {
+      if (res?.payload?.success) {
         await dispatch(getAllCourses());
       }
     }
@@ -85,22 +107,17 @@ function AdminDashboard() {
   return (
     <HomeLayout>
       <div className="min-h-[89vh] pt-5 flex flex-col flex-wrap gap-10 text-white">
-        <h1 className="text-center text-3xl font-semibold text-yellow-500">
+        <h2 className="text-center text-3xl font-semibold text-yellow-500">
           Admin Dashboard
-        </h1>
+        </h2>
 
-        {/* creating the records card and chart for sales and user details */}
         <div className="grid grid-cols-2 gap-5 m-auto mx-10">
-          {/* displaying the users chart and data */}
           <div className="flex flex-col items-center gap-10 p-5 shadow-lg rounded-md">
-            {/* for displaying the pie chart */}
             <div className="w-80 h-80">
               <Pie data={userData} />
             </div>
 
-            {/* card for user data */}
             <div className="grid grid-cols-2 gap-5">
-              {/* card for registered users */}
               <div className="flex items-center justify-between py-5 px-5 gap-5 rounded-md shadow-md">
                 <div className="flex flex-col items-center">
                   <p className="font-semibold">Registered Users</p>
@@ -109,7 +126,6 @@ function AdminDashboard() {
                 <FaUsers className="text-yellow-500 text-5xl" />
               </div>
 
-              {/* card for enrolled users */}
               <div className="flex items-center justify-between py-5 px-5 gap-5 rounded-md shadow-md">
                 <div className="flex flex-col items-center">
                   <p className="font-semibold">Subscribed Users</p>
@@ -120,16 +136,12 @@ function AdminDashboard() {
             </div>
           </div>
 
-          {/* displaying the sales chart and data */}
           <div className="flex flex-col items-center gap-10 p-5 shadow-lg rounded-md">
-            {/* for displaying the bar chart */}
             <div className="h-80 relative w-full">
               <Bar className="absolute bottom-0 h-80 w-full" data={salesData} />
             </div>
 
-            {/* card for user data */}
             <div className="grid grid-cols-2 gap-5">
-              {/* card for registered users */}
               <div className="flex items-center justify-between py-5 px-5 gap-5 rounded-md shadow-md">
                 <div className="flex flex-col items-center">
                   <p className="font-semibold">Subscriptions Count</p>
@@ -138,7 +150,6 @@ function AdminDashboard() {
                 <FcSalesPerformance className="text-yellow-500 text-5xl" />
               </div>
 
-              {/* card for enrolled users */}
               <div className="flex items-center justify-between py-5 px-5 gap-5 rounded-md shadow-md">
                 <div className="flex flex-col items-center">
                   <p className="font-semibold">Total Revenue</p>
@@ -152,14 +163,12 @@ function AdminDashboard() {
           </div>
         </div>
 
-        {/* CRUD courses section */}
         <div className="mx-[10%] w-[80%] self-center flex flex-col items-center justify-center gap-10 mb-10">
           <div className="flex w-full items-center justify-between">
-            <h1 className="text-center text-3xl font-semibold">
+            <h2 className="text-center text-3xl font-semibold">
               Courses Overview
-            </h1>
+            </h2>
 
-            {/* add course card */}
             <button
               onClick={() => {
                 navigate("/course/create", {
@@ -219,7 +228,6 @@ function AdminDashboard() {
                     </td>
 
                     <td className="flex items-center gap-4">
-                      {/* to edit the course */}
                       <button
                         onClick={() =>
                           navigate("/course/create", {
@@ -236,7 +244,6 @@ function AdminDashboard() {
                         <MdOutlineModeEdit />
                       </button>
 
-                      {/* to delete the course */}
                       <button
                         onClick={() => handleCourseDelete(element._id)}
                         className="bg-red-500 hover:bg-red-600 transition-all ease-in-out duration-30 text-xl py-2 px-4 rounded-md font-bold"
@@ -244,10 +251,9 @@ function AdminDashboard() {
                         <BsTrash />
                       </button>
 
-                      {/* to CRUD the lectures */}
                       <button
                         onClick={() =>
-                          navigate("/course/displaylectures", {
+                          navigate("/course/display-lectures", {
                             state: { ...element },
                           })
                         }
