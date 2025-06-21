@@ -60,19 +60,26 @@ function Contact() {
 
   return (
     <HomeLayout>
-      <div className="flex items-center justify-center h-[89vh]">
+      <div className="flex items-center justify-center min-h-[92.4vh] py-8 px-4">
         <form
           noValidate
           onSubmit={handleFormSubmit}
-          className="flex flex-col items-center justify-center gap-2 p-5 rounded-md text-white shadow-[0_0_10px_black] w-[22rem]"
+          className="flex flex-col justify-center gap-2 sm:gap-4 rounded-lg p-3 text-white w-full max-w-xs sm:max-w-sm shadow-[0_0_10px_black]"
         >
-          <h2 className="text-3xl font-semibold">Contact Form</h2>
-          <div className="flex flex-col w-full gap-1">
-            <label className="text-xl font-semibold" htmlFor="name">
+          <h2 className="text-center text-xl sm:text-2xl font-bold">
+            Contact Form
+          </h2>
+
+          <div className="flex flex-col gap-1">
+            <label
+              htmlFor="name"
+              className="font-semibold text-sm sm:text-base"
+            >
               Name
             </label>
             <input
-              className="bg-transparent border px-2 py-1 rounded-sm"
+              required
+              className="w-full bg-transparent px-2 py-1 sm:py-1.5 text-sm sm:text-base border outline-none rounded-sm"
               id="name"
               type="text"
               name="name"
@@ -82,27 +89,35 @@ function Contact() {
             />
           </div>
 
-          <div className="flex flex-col w-full gap-1">
-            <label className="text-xl font-semibold" htmlFor="email">
+          <div className="flex flex-col gap-1">
+            <label
+              htmlFor="email"
+              className="font-semibold text-sm sm:text-base"
+            >
               Email
             </label>
             <input
-              className="bg-transparent border px-2 py-1 rounded-sm"
+              required
+              className="w-full bg-transparent px-2 py-1 sm:py-1.5 text-sm sm:text-base border outline-none rounded-sm"
               id="email"
               type="email"
               name="email"
-              placeholder="Enter the email"
+              placeholder="Enter your email"
               value={userInput.email}
               onChange={handleInputChange}
             />
           </div>
 
-          <div className="flex flex-col w-full gap-1">
-            <label className="text-xl font-semibold" htmlFor="message">
+          <div className="flex flex-col gap-1">
+            <label
+              htmlFor="message"
+              className="font-semibold text-sm sm:text-base"
+            >
               Message
             </label>
             <textarea
-              className="bg-transparent border px-2 py-1 rounded-sm resize-none h-40"
+              required
+              className="w-full bg-transparent px-2 py-1 sm:py-1.5 text-sm sm:text-base border outline-none rounded-sm resize-none md:h-40 h-20"
               name="message"
               id="message"
               placeholder="Enter your message"
@@ -112,8 +127,8 @@ function Contact() {
           </div>
 
           <button
-            className="w-full bg-yellow-600 hover:bg-yellow-500 transition-all ease-in-out duration-300 rounded-sm py-2 font-semibold text-lg cursor-pointer"
             type="submit"
+            className="bg-yellow-600 hover:bg-yellow-500 transition-all ease-in-out duration-300 rounded-sm mt-2 py-2 text-md sm:text-base font-semibold cursor-pointer"
           >
             Submit
           </button>

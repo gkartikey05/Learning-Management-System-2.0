@@ -15,11 +15,11 @@ const CourseDescription = () => {
 
   return (
     <HomeLayout>
-      <div className="min-h-[89vh] pt-12 px-20 flex flex-col items-center justify-center text-white">
-        <div className="grid grid-cols-2 gap-10 py-10 relative">
-          <div className="space-y-5">
+      <div className="min-h-[92.4vh] px-4 md:px-15 lg:px-20 flex items-center justify-center text-white">
+        <div className="flex flex-col-reverse md:flex-row w-full justify-between flex-wrap gap-5 relative">
+          <div className="space-y-5 w-full md:w-[50%] xl:w-[48%]">
             <img
-              className="w-full h-64"
+              className="w-full h-40 md:h-50 lg:h-60 xl:h-70"
               src={state?.thumbnail?.secure_url}
               alt="thumbnail"
             />
@@ -27,16 +27,20 @@ const CourseDescription = () => {
             <div className="space-y-4">
               <div className="flex items-center justify-between text-xl">
                 <p className="font-semibold">
-                  <span className="text-yellow-500 font-bold">
+                  <span className="text-yellow-500 font-bold text-sm lg:text-base">
                     Total Lectures :{" "}
                   </span>
-                  {state.numbersOfLectures}
+                  <span className="text-sm lg:text-base">
+                    {state.numbersOfLectures}
+                  </span>
                 </p>
                 <p className="font-semibold">
-                  <span className="text-yellow-500 font-bold">
+                  <span className="text-yellow-500 font-bold text-sm lg:text-base">
                     Instructor :{" "}
                   </span>
-                  {state.createdBy}
+                  <span className="text-sm lg:text-base">
+                    {state.createdBy}
+                  </span>
                 </p>
               </div>
 
@@ -47,7 +51,7 @@ const CourseDescription = () => {
                       state: { ...state },
                     })
                   }
-                  className="bg-yellow-600 text-xl rounded-md font-bold px-5 py-3 w-full hover:bg-yellow-500 transition-all ease-in-out duration-300 cursor-pointer"
+                  className="bg-yellow-600 text-base lg:text-lg xl:text-xl rounded-md font-bold px-5 py-2 lg:py-3 w-full hover:bg-yellow-500 transition-all ease-in-out duration-300 cursor-pointer"
                 >
                   Watch Lectures
                 </button>
@@ -62,14 +66,17 @@ const CourseDescription = () => {
             </div>
           </div>
 
-          <div className="space-y-2 text-xl">
-            <h2 className="text-3xl font-bold text-yellow-500 text-center mb-4">
+          <div className="space-y-2 w-full md:w-[45%] xl:w-[48%]">
+            <h2 className="text-xl lg:text-2xl xl:text-3xl font-bold text-center md:text-left text-yellow-500 mb-4">
               {state.title}
             </h2>
 
-            <p className="text-yellow-500 font-bold">Course Description :</p>
-
-            <p>{state.description}</p>
+            <p className="text-yellow-500 lg:text-lg xl:text-xl font-bold">
+              Course Description :
+            </p>
+            <p className="text-sm lg:text-base xl:text-lg">
+              {state.description}
+            </p>
           </div>
         </div>
       </div>

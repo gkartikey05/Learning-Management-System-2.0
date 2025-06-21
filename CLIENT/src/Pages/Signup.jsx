@@ -105,7 +105,7 @@ function Signup() {
 
   return (
     <HomeLayout>
-      <div className="flex items-center justify-center min-h-[89vh] py-8 px-4">
+      <div className="flex items-center justify-center min-h-[92.4vh] py-8 px-4">
         <form
           noValidate
           onSubmit={createUserAccount}

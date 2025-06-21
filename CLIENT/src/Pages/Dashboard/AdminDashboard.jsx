@@ -84,7 +84,7 @@ function AdminDashboard() {
     ],
   };
 
-  const myCourses = useSelector((state) => state?.course?.coursesData);
+  const myCourses = useSelector((state) => state?.course?.courseData);
 
   const handleCourseDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete the course?")) {
@@ -106,7 +106,7 @@ function AdminDashboard() {
 
   return (
     <HomeLayout>
-      <div className="min-h-[89vh] pt-5 flex flex-col flex-wrap gap-10 text-white">
+      <div className="min-h-[92.4vh] pt-5 flex flex-col flex-wrap gap-10 text-white">
         <h2 className="text-center text-3xl font-semibold text-yellow-500">
           Admin Dashboard
         </h2>
@@ -200,15 +200,15 @@ function AdminDashboard() {
                 <th>Instructor</th>
                 <th>Total Lectures</th>
                 <th>Course Description</th>
-                <th>Actions</th>
+                <th className="text-center">Actions</th>
               </tr>
             </thead>
 
             <tbody>
               {myCourses?.map((element, index) => {
                 return (
-                  <tr key={element?._id}>
-                    <td>{index + 1}</td>
+                  <tr key={element._id}>
+                    <td className="text-center">{index + 1}</td>
                     <td>
                       <textarea
                         readOnly
@@ -218,11 +218,13 @@ function AdminDashboard() {
                     </td>
                     <td>{element?.category}</td>
                     <td>{element?.createdBy}</td>
-                    <td>{element?.numberOfLectures}</td>
-                    <td className="max-w-28 overflow-hidden text-ellipsis whitespace-nowrap">
+                    <td className="text-center">
+                      {element?.numbersOfLectures}
+                    </td>
+                    <td className="max-w-64 overflow-hidden text-ellipsis whitespace-nowrap">
                       <textarea
                         readOnly
-                        className="w-80 h-auto bg-transparent resize-none"
+                        className="w-64 h-auto bg-transparent resize-none"
                         value={element?.description}
                       ></textarea>
                     </td>
@@ -239,6 +241,7 @@ function AdminDashboard() {
                             },
                           })
                         }
+                        title="Edit Course"
                         className="bg-yellow-500 hover:bg-yellow-600 transition-all ease-in-out duration-300 text-xl py-2 px-4 rounded-md font-bold"
                       >
                         <MdOutlineModeEdit />
@@ -246,6 +249,7 @@ function AdminDashboard() {
 
                       <button
                         onClick={() => handleCourseDelete(element._id)}
+                        title="Delete Course"
                         className="bg-red-500 hover:bg-red-600 transition-all ease-in-out duration-30 text-xl py-2 px-4 rounded-md font-bold"
                       >
                         <BsTrash />
@@ -257,6 +261,7 @@ function AdminDashboard() {
                             state: { ...element },
                           })
                         }
+                        title="View Lectures"
                         className="bg-green-500 hover:bg-green-600 transition-all ease-in-out duration-30 text-xl py-2 px-4 rounded-md font-bold"
                       >
                         <BsCollectionPlayFill />

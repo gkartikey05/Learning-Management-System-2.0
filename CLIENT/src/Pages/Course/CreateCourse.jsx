@@ -2,22 +2,25 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import HomeLayout from "../../Layouts/HomeLayout";
-import { createNewCourse } from "../../Redux/Slices/CourseSlice";
+import { createNewCourse, updateCourse } from "../../Redux/Slices/CourseSlice";
 
 function CreateCourse() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const { initialCourseData } = useLocation().state;
+  const [isDisabled, setIsDisabled] = useState(!initialCourseData?.newCourse);
+
   const [userInput, setUserInput] = useState({
-    title: "",
-    category: "",
-    createdBy: "",
-    description: "",
+    title: initialCourseData?.title,
+    category: initialCourseData?.category,
+    createdBy: initialCourseData?.createdBy,
+    description: initialCourseData?.description,
     thumbnail: null,
-    previewImage: "",
+    previewImage: initialCourseData?.thumbnail?.secure_url,
   });
 
   const getImage = (event) => {
@@ -47,18 +50,37 @@ function CreateCourse() {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    if (
-      !userInput.title ||
-      !userInput.category ||
-      !userInput.createdBy ||
-      !userInput.description ||
-      !userInput.thumbnail
-    ) {
-      toast.error("All fields are mandatory");
-      return;
+    let res = undefined;
+
+    if (initialCourseData.newCourse) {
+      console.log(userInput);
+      if (
+        !userInput.title ||
+        !userInput.category ||
+        !userInput.createdBy ||
+        !userInput.description ||
+        !userInput.thumbnail
+      ) {
+        toast.error("All fields are mandatory");
+        return;
+      }
+
+      res = await dispatch(createNewCourse(userInput));
+    } else {
+      if (
+        !userInput.title ||
+        !userInput.category ||
+        !userInput.createdBy ||
+        !userInput.description
+      ) {
+        toast.error("All fields are mandatory");
+        return;
+      }
+
+      const data = { ...userInput, id: initialCourseData._id };
+      res = await dispatch(updateCourse(data));
     }
 
-    const res = await dispatch(createNewCourse(userInput));
     if (res?.payload?.success) {
       setUserInput({
         title: "",
@@ -69,32 +91,39 @@ function CreateCourse() {
         previewImage: "",
       });
 
-      navigate("/courses");
+      setIsDisabled(false);
+      navigate("/admin/dashboard");
     }
   };
 
   return (
     <HomeLayout>
-      <div className="flex items-center justify-center h-[89vh]">
+      <div className="flex items-center justify-center min-h-[92.4vh]">
         <form
-          noValidate
           onSubmit={handleFormSubmit}
           className="flex flex-col justify-center gap-5 rounded-lg p-4 text-white w-[700px] h-[450px] my-10 shadow-[0_0_10px_black] relative"
         >
-          <span
-            onClick={() => navigate(-1)}
+          <Link
+            to={"/admin/dashboard"}
             className="absolute top-8 text-2xl link text-accent cursor-pointer"
           >
             <AiOutlineArrowLeft />
-          </span>
+          </Link>
 
           <h2 className="text-center text-2xl font-bold">
-            <span>Create New Course</span>
+            {!initialCourseData.newCourse ? "Update" : "Create new"}{" "}
+            <span>Course</span>
           </h2>
 
           <main className="grid grid-cols-2 gap-x-10">
             <div className="space-y-6">
-              <div>
+              <div
+                onClick={() =>
+                  !initialCourseData.newCourse
+                    ? toast.error("Cannot update thumbnail image")
+                    : ""
+                }
+              >
                 <label className="cursor-pointer" htmlFor="image_uploads">
                   {userInput.previewImage ? (
                     <img
@@ -117,6 +146,7 @@ function CreateCourse() {
                   id="image_uploads"
                   name="image_uploads"
                   accept=".jpg, .jpeg, .png"
+                  disabled={isDisabled}
                 />
               </div>
 
@@ -192,7 +222,7 @@ function CreateCourse() {
             className="w-full bg-yellow-600 hover:bg-yellow-500 transition-all ease-in-out duration-300 rounded-sm py-2 font-semibold text-lg cursor-pointer"
             type="submit"
           >
-            Create Course
+            {!initialCourseData.newCourse ? "Update Course" : "Create Course"}
           </button>
         </form>
       </div>

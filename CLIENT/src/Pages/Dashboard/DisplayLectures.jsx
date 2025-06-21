@@ -31,7 +31,7 @@ const DisplayLectures = () => {
   }, [dispatch, navigate, state]);
   return (
     <Layout>
-      <div className="flex flex-col gap-10 items-center justify-center min-h-[89vh] py-10 text-white mx-[5%]">
+      <div className="flex flex-col gap-10 items-center justify-center min-h-[92.4vh] py-10 text-white mx-[5%]">
         <h2 className="text-center text-2xl font-semibold text-yellow-500">
           Course Name : {state?.title}
         </h2>

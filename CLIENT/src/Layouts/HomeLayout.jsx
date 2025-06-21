@@ -43,8 +43,7 @@ function HomeLayout({ children }) {
           <label htmlFor="my-drawer" className="cursor-pointer relative">
             <FiMenu
               onClick={changeWidth}
-              size={32}
-              className="font-bold text-white m-4"
+              className="font-bold text-white m-4 text-[22px] sm:text-[28px]"
             />
           </label>
         </div>
@@ -66,14 +65,6 @@ function HomeLayout({ children }) {
               <li className="pb-2 text-[14px] sm:text-[16px]">
                 <Link className="pb-1.5" to={"/admin/dashboard"}>
                   Admin Dashboard
-                </Link>
-              </li>
-            )}
-
-            {isLoggedIn && role === "ADMIN" && (
-              <li className="pb-2 text-[14px] sm:text-[16px]">
-                <Link className="pb-1.5" to={"/course/create"}>
-                  Create Course
                 </Link>
               </li>
             )}

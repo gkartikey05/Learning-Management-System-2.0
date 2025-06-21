@@ -20,16 +20,16 @@ function CourseList() {
 
   return (
     <HomeLayout>
-      <div className="min-h-[89vh] pt-12 pl-20 flex flex-col flex-wrap gap-10 text-white">
-        <h2 className="text-center text-3xl font-semibold">
+      <div className="min-h-[92.4vh] pt-12 px-4 sm:px-10 lg:px-20 flex flex-col gap-10 text-white">
+        <h2 className="text-center text-2xl sm:text-3xl font-semibold">
           Explore the courses made by{" "}
           <span className="font-bold text-yellow-500">Industry Experts</span>
         </h2>
 
-        <div className="mb-10 flex flex-wrap gap-14">
-          {courseData?.map((e) => {
-            return <CourseCard key={e._id} data={e} />;
-          })}
+        <div className="mb-10 flex flex-wrap justify-center gap-5 xl:gap-8 ">
+          {courseData?.map((e) => (
+            <CourseCard key={e._id} data={e} />
+          ))}
         </div>
       </div>
     </HomeLayout>

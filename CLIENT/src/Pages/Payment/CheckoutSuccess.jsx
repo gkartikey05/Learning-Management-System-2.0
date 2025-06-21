@@ -6,7 +6,7 @@ import HomeLayout from "../../Layouts/HomeLayout";
 function CheckoutSuccess() {
   return (
     <HomeLayout>
-      <div className="min-h-[89vh] flex items-center justify-center text-white">
+      <div className="min-h-[92.4vh] flex items-center justify-center text-white">
         <div className="w-80 h-[26rem] flex flex-col justify-center items-center shadow-[0_0_10px_black] rounded-lg relative">
           <h2 className="bg-green-500 absolute top-0 w-full text-center py-4 text-2xl font-bold rounded-tl-lg rounded-tr-lg">
             Payment Successful

@@ -72,15 +72,15 @@ function ChangePassword() {
 
   return (
     <HomeLayout>
-      <div className="flex items-center justify-center min-h-[89vh] py-8 px-4">
+      <div className="flex items-center justify-center min-h-[92.4vh] py-8 px-4">
         <form
           noValidate
           onSubmit={handleFormSubmit}
           className="flex flex-col justify-center gap-3 sm:gap-4 rounded-lg p-4 text-white w-full max-w-xs sm:max-w-sm shadow-[0_0_10px_black]"
         >
-          <h1 className="text-center text-xl sm:text-2xl font-bold">
+          <h2 className="text-center text-xl sm:text-2xl font-bold">
             Change Password
-          </h1>
+          </h2>
 
           <div className="flex flex-col gap-1">
             <label

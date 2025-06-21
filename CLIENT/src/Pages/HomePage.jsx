@@ -6,7 +6,7 @@ import HomeLayout from "../Layouts/HomeLayout";
 function HomePage() {
   return (
     <HomeLayout>
-      <div className="pt-10 text-white flex flex-col-reverse lg:flex-row items-center justify-center gap-10 mx-4 md:mx-8 lg:mx-16 min-h-[89.3vh]">
+      <div className="pt-10 text-white flex flex-col-reverse lg:flex-row items-center justify-center gap-10 mx-4 md:mx-8 lg:mx-16 min-h-[92.4vh]">
         <div className="w-full lg:w-[55%] space-y-6 text-center lg:text-left">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold">
             Find out best <br className="block sm:hidden" />
@@ -25,7 +25,7 @@ function HomePage() {
             </Link>
 
             <Link to={"/contact"}>
-              <button className="border border-yellow-500 px-5 py-3 rounded-md font-semibold text-base md:text-lg cursor-pointer hover:border-yellow-600 hover:bg-yellow-600 transition-all ease-in-out duration-200 w-full md:w-auto">
+              <button className="border border-yellow-500 px-5 py-3 rounded-md font-semibold text-base md:text-lg cursor-pointer hover:border-yellow-500 hover:bg-yellow-500 transition-all ease-in-out duration-200 w-full md:w-auto">
                 Contact Us
               </button>
             </Link>
