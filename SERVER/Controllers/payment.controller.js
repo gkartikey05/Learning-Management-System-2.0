@@ -115,7 +115,6 @@ export const cancelSubscription = async (req, res, next) => {
   user.subscription.status = undefined;
 
   await user.save();
-  await payment.remove();
 
   res.status(200).json({
     success: true,

@@ -25,8 +25,8 @@ export const purchaseCourseBundle = createAsyncThunk(
   "/razorpay/purchaseBundle",
   async () => {
     try {
-      const res = await axiosInstance.post("/payments/subscribe");
-      return res.data;
+      const res = axiosInstance.post("/payments/subscribe");
+      return (await res)?.data;
     } catch (error) {
       toast.error(error?.response?.data?.message);
     }
@@ -75,9 +75,7 @@ export const cancelCourseBundle = createAsyncThunk(
       const res = axiosInstance.post("/payments/unsubscribe");
       toast.promise(res, {
         loading: "Unsubscribing the bundle...",
-        success: (data) => {
-          return data?.data?.message;
-        },
+        success: "Bundle unsubscibed successfully",
         error: "Failed to unsubscribe the bundle",
       });
       return (await res).data;

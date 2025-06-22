@@ -48,7 +48,7 @@ function App() {
 
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/checkout/success" element={<CheckoutSuccess />} />
-        <Route path="/checkout/fail" element={<CheckoutFailure />} />
+        <Route path="/checkout/failed" element={<CheckoutFailure />} />
       </Route>
 
       <Route element={<RequireAuth allowedRoles={["ADMIN"]} />}>

@@ -34,11 +34,8 @@ function Checkout() {
     const options = {
       key: razorPayKey,
       subscription_id: subscription_id,
-      name: "LMS Pvt. Ltd.",
+      name: "LMS 2.0",
       description: "Yearly Subscription",
-      theme: {
-        color: "#F37254",
-      },
       prefill: {
         name: userData.fullName,
         email: userData.email,
@@ -53,7 +50,7 @@ function Checkout() {
         
         res?.payload?.success
           ? navigate("/checkout/success")
-          : navigate("/checkout/failure");
+          : navigate("/checkout/failed");
       },
     };
 
