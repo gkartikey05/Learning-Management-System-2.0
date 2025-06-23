@@ -1,9 +1,11 @@
+// Middleware for handling file uploads using multer
 import path from "path";
 import multer from "multer";
 
+// Configure multer for file storage and filtering
 const upload = multer({
   dest: "Uploads/",
-  limits: { fileSize: 50 * 1024 * 1024 }, // 50 mb in size max limit
+  limits: { fileSize: 50 * 1024 * 1024 }, // 50 MB max file size
   storage: multer.diskStorage({
     destination: "Uploads/",
     filename: (_req, file, cb) => {
@@ -13,6 +15,7 @@ const upload = multer({
   fileFilter: (_req, file, cb) => {
     let ext = path.extname(file.originalname);
 
+    // Allow only specific file types
     if (
       ext !== ".jpeg" &&
       ext !== ".jpg" &&

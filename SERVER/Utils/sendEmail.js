@@ -1,3 +1,4 @@
+// Utility function to send emails using nodemailer
 import { createTransport } from "nodemailer";
 
 const sendEmail = async function (email, subject, message) {

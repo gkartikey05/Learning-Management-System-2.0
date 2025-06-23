@@ -1,3 +1,4 @@
+// Custom error class for consistent error handling
 class AppError extends Error {
   constructor(message, statusCode) {
     super(message);

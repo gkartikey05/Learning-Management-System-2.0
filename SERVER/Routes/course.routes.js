@@ -1,3 +1,4 @@
+// Express routes for course-related endpoints
 import { Router } from "express";
 import {
   addLecturesToCourseById,
@@ -12,6 +13,7 @@ import upload from "../Middlewares/multer.middleware.js";
 
 const router = Router();
 
+// Get all courses or create a new course (admin only)
 router
   .route("/")
   .get(getAllCourses)
@@ -21,11 +23,12 @@ router
     upload.single("thumbnail"),
     createCourse
   );
-  
+
+// Get, update, delete, or add lectures to a specific course by ID
 router
   .route("/:id")
   .get(
-    isLoggedIn,
+    isLoggedIn, 
     getCourseById
   )
   .put(
