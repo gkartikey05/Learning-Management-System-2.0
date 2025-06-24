@@ -148,30 +148,27 @@ export const addLecturesToCourseById = async (req, res, next) => {
     const lectureData = {
       title,
       description,
-      lecture: {
-        public_id: title,
-        secure_url:
-          "https://res.cloudinary.com/dx0h4xmyc/image/upload/v1748796534/lms/avatar_drzgxv.jpg",
-      },
+      lecture: {},
     };
 
     if (req.file) {
       try {
         const result = await cloudinary.v2.uploader.upload(req.file.path, {
           folder: "lms",
-          width: 250,
-          height: 250,
-          gravity: "faces",
-          crop: "fill",
+          chunk_size: 50000000, // 50 mb size
+          resource_type: "video",
         });
 
         if (result) {
           lectureData.lecture.public_id = result.public_id;
           lectureData.lecture.secure_url = result.secure_url;
-
-          fs.rm(`Uploads/${req.file.filename}`);
         }
+        fs.rm(`Uploads/${req.file.filename}`);
       } catch (err) {
+        for (const file of await fs.readdir("Uploads/")) {
+          await fs.unlink(path.join("Uploads/", file));
+        }
+
         return next(new AppError(err.message, 500));
       }
     }

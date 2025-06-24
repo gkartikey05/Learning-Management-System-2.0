@@ -29,6 +29,7 @@ const AddLectures = () => {
   const getVideo = (event) => {
     const video = event.target.files[0];
     const source = window.URL.createObjectURL(video);
+    console.log(source)
     setUserInput({ ...userInput, videoSrc: source, lecture: video });
   };
 
