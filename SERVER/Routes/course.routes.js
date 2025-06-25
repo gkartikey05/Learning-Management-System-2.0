@@ -4,6 +4,7 @@ import {
   addLecturesToCourseById,
   createCourse,
   deleteCourseById,
+  deleteLectureToCourseById,
   getAllCourses,
   getCourseById,
   updateCourseById,
@@ -22,7 +23,8 @@ router
     authorizedRoles("ADMIN"),
     upload.single("thumbnail"),
     createCourse
-  );
+  )
+  .delete(isLoggedIn, authorizedRoles("ADMIN"), deleteLectureToCourseById);
 
 // Get, update, delete, or add lectures to a specific course by ID
 router

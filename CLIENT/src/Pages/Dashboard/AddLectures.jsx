@@ -66,7 +66,7 @@ const AddLectures = () => {
           <header className="flex items-center justify-center relative">
             <button
               onClick={() => navigate(-1)}
-              className="absolute left-2 text-xl text-green-500"
+              className="absolute left-2 text-xl text-green-500 cursor-pointer"
             >
               <AiOutlineArrowLeft />
             </button>

@@ -23,19 +23,22 @@ function Footer() {
           <BsFacebook />
         </Link>
         <Link
-          to={"#"}
+          to={"https://x.com/KartikeyGupta_"}
+          target="_blank"
           className="hover:text-yellow-500 transition duration-200 ease-in-out"
         >
           <BsTwitterX />
         </Link>
         <Link
-          to={"#"}
+          to={"https://www.instagram.com/the_kartikey.gupta"}
+          target="_blank"
           className="hover:text-yellow-500 transition duration-200 ease-in-out"
         >
           <BsInstagram />
         </Link>
         <Link
-          to={"#"}
+          to={"https://www.linkedin.com/in/gkartikey05"}
+          target="_blank"
           className="hover:text-yellow-500 transition duration-200 ease-in-out"
         >
           <BsLinkedin />
