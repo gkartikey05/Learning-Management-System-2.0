@@ -62,19 +62,19 @@ const AddLectures = () => {
   return (
     <HomeLayout>
       <div className=" text-white flex flex-col items-center justify-center gap-10 mx-16 min-h-[92.4vh]">
-        <div className="flex flex-col gap-5 p-2 shadow-[0_0_10px_black] w-96 rounded-lg">
+        <div className="flex flex-col gap-5 p-2 shadow-[0_0_10px_black] my-16 md:my-0 w-72 md:w-96 rounded-lg">
           <header className="flex items-center justify-center relative">
             <button
               onClick={() => navigate(-1)}
-              className="absolute left-2 text-xl text-green-500 cursor-pointer"
+              className="absolute left-0.5 top-3 md:left-2 text-xl text-green-500 cursor-pointer"
             >
               <AiOutlineArrowLeft />
             </button>
-            <h2 className="text-xl text-yellow-500 font-semibold">
+            <h2 className="mt-2 text-xl text-yellow-500 font-semibold">
               Add your new lecture
             </h2>
           </header>
-          <form onSubmit={handleFormSubmit} className="flex flex-col gap-3">
+          <form onSubmit={handleFormSubmit} className="flex flex-col mb-2 md:mb-0 gap-3">
             <input
               type="text"
               name="title"

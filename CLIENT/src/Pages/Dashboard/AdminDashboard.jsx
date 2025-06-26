@@ -111,7 +111,7 @@ function AdminDashboard() {
           Admin Dashboard
         </h2>
 
-        <div className="grid grid-cols-2 gap-5 m-auto mx-10">
+        <div className="grid md:grid-cols-2 gap-5 m-auto mx-10">
           <div className="flex flex-col items-center gap-10 p-5 shadow-lg rounded-md">
             <div className="w-80 h-80">
               <Pie data={userData} />
@@ -163,7 +163,7 @@ function AdminDashboard() {
           </div>
         </div>
 
-        <div className="mx-[10%] w-[80%] self-center flex flex-col items-center justify-center gap-10 mb-10">
+        <div className="md:mx-[10%] md:w-[80%] self-center flex flex-col items-center justify-center gap-10 mb-10">
           <div className="flex w-full items-center justify-between">
             <h2 className="text-center text-3xl font-semibold">
               Courses Overview
