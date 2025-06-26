@@ -39,20 +39,20 @@ app.use(cookieParser());
 // Log HTTP requests in development
 app.use(morgan("dev"));
 
+// Define root route to handle GET and HEAD requests (e.g., Render health checks)
+app.head("/", (req, res) => {
+  res.sendStatus(200);
+});
+
+app.get("/", (req, res) => {
+  res.status(200).send("LMS Backend is running");
+});
+
 //* API routes for different modules
 app.use("/api/v1/user", userRoutes); // User authentication and profile routes
 app.use("/api/v1/courses", courseRoutes); // Course management routes
 app.use("/api/v1", miscellanousRoutes); // Miscellaneous routes (contact, stats, etc.)
 app.use("/api/v1/payments", paymentRoutes); // Payment and subscription routes
-
-// Define root route to handle GET and HEAD requests (e.g., Render health checks)
-app.get("/api/v1", (req, res) => {
-  res.status(200).send("LMS Backend is running");
-});
-
-app.head("/api/v1", (req, res) => {
-  res.sendStatus(200);
-});
 
 app.use((req, res, next) => {
   const error = new Error("Route not found");
