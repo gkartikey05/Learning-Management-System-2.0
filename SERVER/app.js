@@ -16,16 +16,26 @@ config();
 const app = express();
 
 // CORS configuration for frontend integration
-const corsOptions = {
-  origin: process.env.FRONTEND_URL,
-  credentials: true,
-};
+const allowedOrigins = [
+  process.env.FRONTEND_URL_PROD,
+  process.env.FRONTEND_URL, // fallback for local/dev
+];
 
-app.use(cors(corsOptions));
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      // allow requests with no origin (like mobile apps, curl, etc.)
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.indexOf(origin) !== -1) {
+        return callback(null, true);
+      } else {
+        return callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+  })
+);
 
-// Handle all OPTIONS requests for CORS preflight
-app.options("/api/v1", cors(corsOptions));
-app.options(/.*/, cors(corsOptions));
 // Parse JSON and URL-encoded data from requests
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
