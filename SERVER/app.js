@@ -23,16 +23,11 @@ const allowedOrigins = [
 
 app.use(
   cors({
-    origin: function (origin, callback) {
-      // allow requests with no origin (like mobile apps, curl, etc.)
-      if (!origin) return callback(null, true);
-      if (allowedOrigins.indexOf(origin) !== -1) {
-        return callback(null, true);
-      } else {
-        return callback(new Error("Not allowed by CORS"));
-      }
-    },
+    origin: allowedOrigins,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
+    optionsSuccessStatus: 200,
   })
 );
 
@@ -51,11 +46,11 @@ app.use("/api/v1", miscellanousRoutes); // Miscellaneous routes (contact, stats,
 app.use("/api/v1/payments", paymentRoutes); // Payment and subscription routes
 
 // Define root route to handle GET and HEAD requests (e.g., Render health checks)
-app.get("/", (req, res) => {
+app.get("/api/v1", (req, res) => {
   res.status(200).send("LMS Backend is running");
 });
 
-app.head("/", (req, res) => {
+app.head("/api/v1", (req, res) => {
   res.sendStatus(200);
 });
 
