@@ -16,20 +16,44 @@ import upload from "../Middlewares/multer.middleware.js";
 const router = Router();
 
 // User registration with avatar upload
-router.post("/signup", upload.single("avatar"), signUp);
+router
+  .route("/signup")
+  .post(upload.single("avatar"), signUp)
+  .head((req, res) => res.sendStatus(200));
 // User login
-router.post("/login", login);
+router
+  .route("/login")
+  .post(login)
+  .head((req, res) => res.sendStatus(200));
 // Get user profile (authenticated)
-router.get("/profile", isLoggedIn, userProfile);
+router
+  .route("/profile")
+  .get(isLoggedIn, userProfile)
+  .head((req, res) => res.sendStatus(200));
 // Logout user (authenticated)
-router.get("/logout", isLoggedIn, logout);
+router
+  .route("/logout")
+  .get(isLoggedIn, logout)
+  .head((req, res) => res.sendStatus(200));
 // Update user profile (authenticated, with avatar upload)
-router.put("/update/:id", isLoggedIn, upload.single("avatar"), updateUser);
+router
+  .route("/update/:id")
+  .put(isLoggedIn, upload.single("avatar"), updateUser)
+  .head((req, res) => res.sendStatus(200));
 // Change password (authenticated)
-router.post("/change-password", isLoggedIn, changePassword);
+router
+  .route("/change-password")
+  .post(isLoggedIn, changePassword)
+  .head((req, res) => res.sendStatus(200));
 // Forgot password (send reset email)
-router.post("/forgot-password", forgotPassword);
+router
+  .route("/forgot-password")
+  .post(forgotPassword)
+  .head((req, res) => res.sendStatus(200));
 // Reset password using token
-router.post("/reset-password/:resetToken", resetPassword);
+router
+  .route("/reset-password/:resetToken")
+  .post(resetPassword)
+  .head((req, res) => res.sendStatus(200));
 
 export default router;

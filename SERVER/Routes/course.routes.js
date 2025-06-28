@@ -18,6 +18,7 @@ const router = Router();
 router
   .route("/")
   .get(getAllCourses)
+  .head((req, res) => res.sendStatus(200))
   .post(
     isLoggedIn,
     authorizedRoles("ADMIN"),
@@ -29,26 +30,20 @@ router
 // Get, update, delete, or add lectures to a specific course by ID
 router
   .route("/:id")
-  .get(
-    isLoggedIn, 
-    getCourseById
-  )
+  .get(isLoggedIn, getCourseById)
   .put(
     isLoggedIn,
     authorizedRoles("ADMIN"),
     upload.single("thumbnail"),
     updateCourseById
   )
-  .delete(
-    isLoggedIn, 
-    authorizedRoles("ADMIN"), 
-    deleteCourseById
-  )
+  .delete(isLoggedIn, authorizedRoles("ADMIN"), deleteCourseById)
   .post(
     isLoggedIn,
     authorizedRoles("ADMIN"),
     upload.single("lecture"),
     addLecturesToCourseById
-  );
+  )
+  .head((req, res) => res.sendStatus(200));
 
 export default router;
