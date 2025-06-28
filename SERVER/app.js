@@ -21,19 +21,16 @@ const allowedOrigins = [
   process.env.FRONTEND_URL, // fallback for local/dev
 ];
 
+// Parse JSON and URL-encoded data from requests
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
     origin: allowedOrigins,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
-    optionsSuccessStatus: 200,
   })
 );
-
-// Parse JSON and URL-encoded data from requests
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 // Parse cookies from requests
 app.use(cookieParser());
 // Log HTTP requests in development
