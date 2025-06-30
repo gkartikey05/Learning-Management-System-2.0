@@ -6,7 +6,6 @@
       "use": "@vercel/node"
     }
   ],
-  "rewrites": [{ "source": "/(.*)", "destination": "src/main.jsx" }],
   "headers": [
     {
       "source": "/(.*)",
