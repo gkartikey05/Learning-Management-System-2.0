@@ -6,9 +6,10 @@ import sendEmail from "../Utils/sendEmail.js";
 import crypto from "crypto";
 
 const cookieOptions = {
+  secure: process.env.NODE_ENV === "production",
   maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
   httpOnly: true,
-  secure: true,
+  sameSite: "Strict"
 };
 
 export const signUp = async (req, res, next) => {
