@@ -17,6 +17,7 @@ const app = express();
 
 // CORS configuration for frontend integration
 const allowedOrigins = [
+  "https://learning-management-system-2-0.vercel.app/",
   process.env.FRONTEND_URL_PROD,
   process.env.FRONTEND_URL, // fallback for local/dev
 ];
@@ -48,9 +49,16 @@ app.get("/", (req, res) => {
 
 //* API routes for different modules
 app.use("/api/v1/user", userRoutes); // User authentication and profile routes
+app.head("/api/v1/user", (req, res) => res.sendStatus(200));
+
 app.use("/api/v1/courses", courseRoutes); // Course management routes
+app.head("/api/v1/courses", (req, res) => res.sendStatus(200));
+
 app.use("/api/v1", miscellanousRoutes); // Miscellaneous routes (contact, stats, etc.)
+app.head("/api/v1", (req, res) => res.sendStatus(200));
+
 app.use("/api/v1/payments", paymentRoutes); // Payment and subscription routes
+app.head("/api/v1/payments", (req, res) => res.sendStatus(200));
 
 app.use((req, res, next) => {
   const error = new Error("Route not found");
