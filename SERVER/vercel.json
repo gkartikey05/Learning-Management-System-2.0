@@ -8,11 +8,11 @@
   ],
   "headers": [
     {
-      "source": "/(.*)",
+      "source": "/https://learning-management-system-2-0.vercel.app/(.*)",
       "headers": [
         {
           "key": "Access-Control-Allow-Origin",
-          "value": "https://learning-management-system-2-0.vercel.app"
+          "value": "*"
         },
         {
           "key": "Access-Control-Allow-Methods",
