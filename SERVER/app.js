@@ -16,23 +16,17 @@ config();
 const app = express();
 
 // CORS configuration for frontend integration
-const allowedOrigins = [
-  "https://learning-management-system-2-0.vercel.app/",
-  process.env.FRONTEND_URL_PROD,
-  process.env.FRONTEND_URL, // fallback for local/dev
-];
-
-// Parse JSON and URL-encoded data from requests
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: allowedOrigins,
+    origin: "https://learning-management-system-2-0.vercel.app",
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
   })
 );
+// Parse JSON and URL-encoded data from requests
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 // Parse cookies from requests
 app.use(cookieParser());
 // Log HTTP requests in development
@@ -48,17 +42,17 @@ app.get("/", (req, res) => {
 });
 
 //* API routes for different modules
-app.use("/api/v1/user", userRoutes); // User authentication and profile routes
-app.head("/api/v1/user", (req, res) => res.sendStatus(200));
+app.use("/api/user", userRoutes); // User authentication and profile routes
+app.head("/api/user", (req, res) => res.sendStatus(200));
 
-app.use("/api/v1/courses", courseRoutes); // Course management routes
-app.head("/api/v1/courses", (req, res) => res.sendStatus(200));
+app.use("/api/courses", courseRoutes); // Course management routes
+app.head("/api/courses", (req, res) => res.sendStatus(200));
 
-app.use("/api/v1", miscellanousRoutes); // Miscellaneous routes (contact, stats, etc.)
-app.head("/api/v1", (req, res) => res.sendStatus(200));
+app.use("/api", miscellanousRoutes); // Miscellaneous routes (contact, stats, etc.)
+app.head("/api", (req, res) => res.sendStatus(200));
 
-app.use("/api/v1/payments", paymentRoutes); // Payment and subscription routes
-app.head("/api/v1/payments", (req, res) => res.sendStatus(200));
+app.use("/api/payments", paymentRoutes); // Payment and subscription routes
+app.head("/api/payments", (req, res) => res.sendStatus(200));
 
 app.use((req, res, next) => {
   const error = new Error("Route not found");
