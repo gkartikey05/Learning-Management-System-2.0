@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import AppError from "../Utils/error.util";
+import AppError from "../Utils/error.util.js";
 
 const generateToken = async (res, next) => {
   try {
