@@ -1,5 +1,6 @@
 import { model, Schema } from "mongoose";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 import crypto from "crypto";
 
 const userSchema = new Schema(
@@ -63,6 +64,20 @@ userSchema.pre("save", async function (next) {
 });
 
 userSchema.methods = {
+  generateJWTToken: async function (id, email, subscription, role) {
+    return await jwt.sign(
+      {
+        id: id,
+        email: email,
+        subscription: subscription,
+        role: role,
+      },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: process.env.JWT_EXPIRY,
+      }
+    );
+  },
   comparePassword: async function (plainTextPassword) {
     return await bcrypt.compare(plainTextPassword, this.password);
   },
