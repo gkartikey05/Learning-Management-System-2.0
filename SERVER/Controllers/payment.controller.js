@@ -25,7 +25,7 @@ export const buySubscription = async (req, res, next) => {
 
   await user.save();
 
-  res.status(200).json({
+  return res.status(200).json({
     success: true,
     message: "subscribed successfully",
     subscription_id: subscription.id,
@@ -34,7 +34,8 @@ export const buySubscription = async (req, res, next) => {
 
 export const verifySubscription = async (req, res, next) => {
   const { id } = req.user;
-  const { razorpay_payment_id, razorpay_subscription_id, razorpay_signature } = req.body;
+  const { razorpay_payment_id, razorpay_subscription_id, razorpay_signature } =
+    req.body;
 
   const user = await User.findById(id);
 
@@ -59,7 +60,7 @@ export const verifySubscription = async (req, res, next) => {
 
   await user.save();
 
-  res.status(200).json({
+  return res.status(200).json({
     success: true,
     message: "Payment verified successfully",
   });
@@ -116,14 +117,14 @@ export const cancelSubscription = async (req, res, next) => {
 
   await user.save();
 
-  res.status(200).json({
+  return res.status(200).json({
     success: true,
     message: "Subscription canceled successfully",
   });
 };
 
 export const getRazorpayApiKey = (req, res, next) => {
-  res.status(200).json({
+  return res.status(200).json({
     success: true,
     message: "Razorpay API key",
     key: process.env.RAZORPAY_KEY_ID,
@@ -188,7 +189,7 @@ export const allPayments = async (req, res, next) => {
     monthlySalesRecord.push(finalMonths[monthName]);
   });
 
-  res.status(200).json({
+  return res.status(200).json({
     success: true,
     message: "All payments",
     allPayments,

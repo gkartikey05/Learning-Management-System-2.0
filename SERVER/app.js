@@ -9,6 +9,8 @@ import courseRoutes from "./Routes/course.routes.js";
 import miscellanousRoutes from "./Routes/miscellaneous.routes.js";
 import paymentRoutes from "./Routes/payment.routes.js";
 import { errorMiddleware } from "./Middlewares/error.middleware.js";
+import swaggerUi from "swagger-ui-express";
+import swaggerDocument from "./swagger-output.json" assert { type: "json" };
 
 // Load environment variables from .env file
 config();
@@ -38,21 +40,17 @@ app.head("/", (req, res) => {
 });
 
 app.get("/", (req, res) => {
-  res.status(200).send("LMS Backend is running");
+  return res.status(200).send("LMS Backend is running");
 });
 
 //* API routes for different modules
 app.use("/api/user", userRoutes); // User authentication and profile routes
-app.head("/api/user", (req, res) => res.sendStatus(200));
-
 app.use("/api/courses", courseRoutes); // Course management routes
-app.head("/api/courses", (req, res) => res.sendStatus(200));
-
 app.use("/api", miscellanousRoutes); // Miscellaneous routes (contact, stats, etc.)
-app.head("/api", (req, res) => res.sendStatus(200));
-
 app.use("/api/payments", paymentRoutes); // Payment and subscription routes
-app.head("/api/payments", (req, res) => res.sendStatus(200));
+
+// Synchronously import swagger-output.json and register Swagger route for API docs
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use((req, res, next) => {
   const error = new Error("Route not found");

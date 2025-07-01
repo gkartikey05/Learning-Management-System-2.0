@@ -9,7 +9,7 @@ export const getAllCourses = async (req, res, next) => {
       .select("-lectures")
       .sort({ createdAt: -1 });
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       message: "All courses fetched successfully",
       courses,
@@ -28,7 +28,7 @@ export const getCourseById = async (req, res, next) => {
       return next(new AppError("Course not found", 404));
     }
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       message: "Course fetched successfully",
       lectures: course.lectures,
@@ -79,7 +79,7 @@ export const createCourse = async (req, res, next) => {
     }
 
     await course.save();
-    res.status(201).json({
+    return res.status(201).json({
       success: true,
       message: "Course created successfully",
       course,
@@ -107,7 +107,7 @@ export const updateCourseById = async (req, res, next) => {
     }
 
     await course.save();
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       message: "Course updated successfully",
       course,
@@ -125,7 +125,7 @@ export const deleteCourseById = async (req, res, next) => {
       return next(new AppError("Course does not exist anymore", 400));
     }
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       message: "Course deleted successfully",
       course,
@@ -177,7 +177,7 @@ export const addLecturesToCourseById = async (req, res, next) => {
     course.numbersOfLectures = course.lectures.length;
     await course.save();
 
-    res.status(201).json({
+    return res.status(201).json({
       success: true,
       message: "Lecture created successfully",
       course,
@@ -225,7 +225,7 @@ export const deleteLectureToCourseById = async (req, res, next) => {
 
   await course.save();
 
-  res.status(200).json({
+  return res.status(200).json({
     success: true,
     message: "Course lecture removed successfully",
   });

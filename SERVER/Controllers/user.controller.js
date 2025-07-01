@@ -9,7 +9,7 @@ const cookieOptions = {
   secure: process.env.NODE_ENV === "production",
   maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
   httpOnly: true,
-  sameSite: "Strict"
+  sameSite: "None",
 };
 
 export const signUp = async (req, res, next) => {
@@ -65,7 +65,7 @@ export const signUp = async (req, res, next) => {
     const token = await user.generateJWTToken();
     res.cookie("token", token, cookieOptions);
 
-    res.status(201).json({
+    return res.status(201).json({
       success: true,
       message: "User registered successfully",
       user,
@@ -93,7 +93,7 @@ export const login = async (req, res, next) => {
     user.password = undefined;
 
     res.cookie("token", token, cookieOptions);
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       message: "User logged in successfully",
       user,
@@ -108,7 +108,7 @@ export const userProfile = async (req, res, next) => {
     const userId = req.user.id;
     const user = await User.findById(userId);
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       message: "User details",
       user,
@@ -126,7 +126,7 @@ export const logout = (req, res, next) => {
       maxAge: 0,
     });
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       message: "User logged out successfully",
     });
@@ -173,7 +173,7 @@ export const updateUser = async (req, res, next) => {
 
     await user.save();
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       message: "User updated successfully",
       user,
@@ -204,7 +204,7 @@ export const changePassword = async (req, res, next) => {
     await user.save();
     user.password = undefined;
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       message: "Password changed successfully",
     });
@@ -239,7 +239,7 @@ export const forgotPassword = async (req, res, next) => {
     try {
       await sendEmail(email, subject, message);
 
-      res.status(200).json({
+      return res.status(200).json({
         success: true,
         message: `Reset password link has been sent to ${email} successfully`,
         resetPasswordUrl,
@@ -285,7 +285,7 @@ export const resetPassword = async (req, res, next) => {
 
     await user.save();
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       message: "Password reset successfully",
     });

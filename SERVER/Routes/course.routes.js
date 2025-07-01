@@ -18,7 +18,6 @@ const router = Router();
 router
   .route("/")
   .get(getAllCourses)
-  .head((req, res) => res.sendStatus(200))
   .post(
     isLoggedIn,
     authorizedRoles("ADMIN"),
@@ -44,6 +43,5 @@ router
     upload.single("lecture"),
     addLecturesToCourseById
   )
-  .head((req, res) => res.sendStatus(200));
 
 export default router;

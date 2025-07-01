@@ -15,7 +15,7 @@ export const contactUs = async (req, res, next) => {
 
     await sendEmail(process.env.CONTACT_US_EMAIL, subject, textMessage);
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       message: "Message sent successfully",
     });
@@ -32,7 +32,7 @@ export const userStats = async (req, res, next) => {
       "subscription.status": "active",
     });
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       message: "User statistics retrieved successfully",
       allUsersCount,

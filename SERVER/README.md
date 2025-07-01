@@ -21,12 +21,19 @@ This is the backend server for the Learning Management System 2.0 project. It is
 
 ## Features
 
-- User authentication and authorization (JWT-based)
-- Course creation, management, and enrollment
-- Payment processing and management
-- File uploads (e.g., course materials)
-- Email notifications
-- Robust error handling
+- User authentication and authorization (JWT-based, with roles: USER, ADMIN)
+- User registration, login, logout, password reset, and profile management
+- Avatar upload and update for user profiles
+- Course creation, update, deletion, and detailed management (admin only)
+- Add, update, and delete lectures (with video upload) to courses
+- Course enrollment for users
+- Payment and subscription management (Razorpay integration)
+- Subscription verification, cancellation, and refund logic
+- Admin dashboard for user and payment statistics
+- Contact form and email notifications (Nodemailer)
+- File uploads (images, videos) with Cloudinary and Multer
+- Robust error handling and custom error responses
+- API documentation with Swagger (OpenAPI)
 
 ---
 
@@ -77,7 +84,7 @@ SERVER/
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/gkartikey05/Learning-Management-System-2.0/tree/main/SERVER
+   git clone https://github.com/gkartikey05/Learning-Management-System-2.0.git
    cd SERVER
    ```
 2. **Install dependencies:**
