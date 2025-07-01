@@ -23,7 +23,7 @@ const app = express();
 // CORS configuration for frontend integration
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL,
+    origin: "https://learning-management-system-2-0.vercel.app",
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
