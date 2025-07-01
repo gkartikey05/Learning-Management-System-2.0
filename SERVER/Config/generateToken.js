@@ -1,20 +1,12 @@
 import jwt from "jsonwebtoken";
 import AppError from "../Utils/error.util.js";
 
-const generateToken = async (res, next) => {
+const generateToken = async (id, res, next) => {
   try {
-    const token = jwt.sign(
-      {
-        id: this._id,
-        email: this.email,
-        subscription: this.subscription,
-        role: this.role,
-      },
-      process.env.JWT_SECRET,
-      {
-        expiresIn: process.env.JWT_EXPIRY,
-      }
-    );
+    const payload = { id };
+    const token = jwt.sign(payload, process.env.JWT_SECRET, {
+      expiresIn: process.env.JWT_EXPIRY,
+    });
 
     // Cookie options
     const cookieOptions = {
