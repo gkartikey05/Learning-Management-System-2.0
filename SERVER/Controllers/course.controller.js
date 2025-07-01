@@ -2,6 +2,7 @@ import Course from "../Models/course.model.js";
 import AppError from "../Utils/error.util.js";
 import cloudinary from "cloudinary";
 import fs from "fs/promises";
+import path from "path";
 
 export const getAllCourses = async (req, res, next) => {
   try {
@@ -14,7 +15,7 @@ export const getAllCourses = async (req, res, next) => {
       message: "All courses fetched successfully",
       courses,
     });
-  } catch (err) {
+  } catch {
     return next(new AppError("Failed to fetch courses", 500));
   }
 };
@@ -33,14 +34,15 @@ export const getCourseById = async (req, res, next) => {
       message: "Course fetched successfully",
       lectures: course.lectures,
     });
-  } catch (err) {
+  } catch {
     return next(new AppError("Failed to fetch this course", 500));
   }
 };
 
 export const createCourse = async (req, res, next) => {
   try {
-    const { title, description, category, thumbnail, createdBy } = req.body;
+    // Remove unused variable 'thumbnail'
+    const { title, description, category, createdBy } = req.body;
 
     const course = await Course.create({
       title,
@@ -168,7 +170,6 @@ export const addLecturesToCourseById = async (req, res, next) => {
         for (const file of await fs.readdir("Uploads/")) {
           await fs.unlink(path.join("Uploads/", file));
         }
-
         return next(new AppError(err.message, 500));
       }
     }

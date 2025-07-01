@@ -58,9 +58,6 @@
                 "category": {
                   "example": "any"
                 },
-                "thumbnail": {
-                  "example": "any"
-                },
                 "createdBy": {
                   "example": "any"
                 }
@@ -308,9 +305,6 @@
                   "example": "any"
                 },
                 "category": {
-                  "example": "any"
-                },
-                "thumbnail": {
                   "example": "any"
                 },
                 "createdBy": {

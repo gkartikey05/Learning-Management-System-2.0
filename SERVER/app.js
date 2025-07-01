@@ -10,7 +10,10 @@ import miscellanousRoutes from "./Routes/miscellaneous.routes.js";
 import paymentRoutes from "./Routes/payment.routes.js";
 import { errorMiddleware } from "./Middlewares/error.middleware.js";
 import swaggerUi from "swagger-ui-express";
-import swaggerDocument from "./swagger-output.json" assert { type: "json" };
+// Use createRequire to import JSON in a way compatible with ESLint and Node.js
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
+const swaggerDocument = require("./swagger-output.json");
 
 // Load environment variables from .env file
 config();

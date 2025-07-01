@@ -6,8 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "swagger": "node ./swagger-gen.js",
+    "lint": "eslint .",
     "start": "node server.js",
-    "dev": "npm run swagger && nodemon server.js"
+    "dev": "npm run swagger && npm run lint -- --fix && nodemon server.js"
   },
   "author": "",
   "license": "ISC",
@@ -28,5 +29,10 @@
     "razorpay": "^2.9.6",
     "swagger-autogen": "^2.23.7",
     "swagger-ui-express": "^5.0.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.30.0",
+    "eslint": "^9.30.0",
+    "globals": "^16.3.0"
   }
 }

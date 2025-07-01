@@ -8,7 +8,7 @@
       "headers": [
         {
           "key": "Access-Control-Allow-Origin",
-          "value": "https://learning-management-system-2-0.onrender.com"
+          "value": "https://learning-management-system-2-0.onrender.com/api/"
         },
         {
           "key": "Access-Control-Allow-Methods",

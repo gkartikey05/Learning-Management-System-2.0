@@ -123,7 +123,8 @@ export const cancelSubscription = async (req, res, next) => {
   });
 };
 
-export const getRazorpayApiKey = (req, res, next) => {
+// Remove unused 'next' parameter
+export const getRazorpayApiKey = (req, res) => {
   return res.status(200).json({
     success: true,
     message: "Razorpay API key",
@@ -131,7 +132,8 @@ export const getRazorpayApiKey = (req, res, next) => {
   });
 };
 
-export const allPayments = async (req, res, next) => {
+// Remove unused 'next' parameter
+export const allPayments = async (req, res) => {
   const { count, skip } = req.query;
 
   const allPayments = await razorpay.subscriptions.all({
