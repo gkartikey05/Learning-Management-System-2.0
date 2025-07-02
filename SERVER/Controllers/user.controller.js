@@ -56,7 +56,14 @@ export const signUp = async (req, res, next) => {
     await user.save();
     user.password = undefined;
 
-    await generateToken(user._id, res, next);
+    await generateToken(
+      user._id,
+      user.email,
+      user.subscription,
+      user.role,
+      res,
+      next
+    );
 
     return res.status(201).json({
       success: true,
@@ -82,7 +89,14 @@ export const login = async (req, res, next) => {
       return next(new AppError("Invalid Credentials", 400));
     }
 
-    await generateToken(user._id, res, next);
+    await generateToken(
+      user._id,
+      user.email,
+      user.subscription,
+      user.role,
+      res,
+      next
+    );
     user.password = undefined;
 
     return res.status(200).json({

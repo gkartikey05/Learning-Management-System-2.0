@@ -1,9 +1,9 @@
 import jwt from "jsonwebtoken";
 import AppError from "../Utils/error.util.js";
 
-const generateToken = async (id, res, next) => {
+const generateToken = async (id, email, subscription, role, res, next) => {
   try {
-    const payload = { id };
+    const payload = { id, email, subscription, role };
     const token = jwt.sign(payload, process.env.JWT_SECRET, {
       expiresIn: process.env.JWT_EXPIRY,
     });
