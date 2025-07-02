@@ -4,7 +4,13 @@ import cloudinary from "cloudinary";
 import fs from "fs/promises";
 import sendEmail from "../Utils/sendEmail.js";
 import crypto from "crypto";
-import generateToken from "../Config/generateToken.js";
+
+const cookieOptions = {
+  httpOnly: true,
+  sameSite: "none",
+  secure: true,
+  maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+};
 
 export const signUp = async (req, res, next) => {
   try {
@@ -56,14 +62,13 @@ export const signUp = async (req, res, next) => {
     await user.save();
     user.password = undefined;
 
-    await generateToken(
+    const token = await user.generateJWTToken(
       user._id,
       user.email,
       user.subscription,
-      user.role,
-      res,
-      next
+      user.role
     );
+    res.cookie("token", token, cookieOptions);
 
     return res.status(201).json({
       success: true,
@@ -89,16 +94,15 @@ export const login = async (req, res, next) => {
       return next(new AppError("Invalid Credentials", 400));
     }
 
-    await generateToken(
+    const token = await user.generateJWTToken(
       user._id,
       user.email,
       user.subscription,
-      user.role,
-      res,
-      next
+      user.role
     );
     user.password = undefined;
 
+    res.cookie("token", token, cookieOptions);
     return res.status(200).json({
       success: true,
       message: "User logged in successfully",
