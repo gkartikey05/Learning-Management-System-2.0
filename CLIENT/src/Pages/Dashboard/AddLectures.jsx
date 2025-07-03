@@ -29,7 +29,7 @@ const AddLectures = () => {
   const getVideo = (event) => {
     const video = event.target.files[0];
     const source = window.URL.createObjectURL(video);
-    console.log(source)
+    console.log(source);
     setUserInput({ ...userInput, videoSrc: source, lecture: video });
   };
 
@@ -74,7 +74,11 @@ const AddLectures = () => {
               Add your new lecture
             </h2>
           </header>
-          <form onSubmit={handleFormSubmit} className="flex flex-col mb-2 md:mb-0 gap-3">
+          <form
+            noValidate
+            onSubmit={handleFormSubmit}
+            className="flex flex-col mb-2 md:mb-0 gap-3"
+          >
             <input
               type="text"
               name="title"

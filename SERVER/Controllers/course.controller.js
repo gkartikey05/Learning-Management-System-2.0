@@ -8,7 +8,7 @@ export const getAllCourses = async (req, res, next) => {
   try {
     const courses = await Course.find({})
       .select("-lectures")
-      .sort({ createdAt: -1 });
+      .sort({ updatedAt: 1 });
 
     return res.status(200).json({
       success: true,
@@ -157,7 +157,7 @@ export const addLecturesToCourseById = async (req, res, next) => {
       try {
         const result = await cloudinary.v2.uploader.upload(req.file.path, {
           folder: "LMS/Lectures",
-          chunk_size: 200 * 1024 * 1024, // 200 mb size
+          chunk_size: 5 * 1024 * 1024 * 1024, // 5 GB size
           resource_type: "video",
         });
 

@@ -163,7 +163,7 @@ function AdminDashboard() {
           </div>
         </div>
 
-        <div className="md:mx-[10%] md:w-[80%] self-center flex flex-col items-center justify-center gap-10 mb-10">
+        <div className="self-center flex flex-col items-center justify-center gap-10 mb-10">
           <div className="flex w-full items-center justify-between">
             <h2 className="text-center text-3xl font-semibold">
               Courses Overview

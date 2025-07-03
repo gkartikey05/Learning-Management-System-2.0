@@ -112,6 +112,7 @@ function CreateCourse() {
     <HomeLayout>
       <div className="flex items-center justify-center p-4 md:p-0 min-h-[92.4vh]">
         <form
+          noValidate
           onSubmit={handleFormSubmit}
           className="flex flex-col justify-center gap-5 rounded-lg p-3 md:p-4 text-white w-[700px] my-10 shadow-[0_0_10px_black] relative"
         >
@@ -145,7 +146,7 @@ function CreateCourse() {
                     />
                   ) : (
                     <div className="w-full h-44 m-auto flex items-center justify-center border">
-                      <h3 className="font-bold text-base md:text-base md:text-lg">
+                      <h3 className="font-bold text-base md:text-base lg:text-lg">
                         Upload your course thumbnail
                       </h3>
                     </div>

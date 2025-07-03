@@ -70,6 +70,7 @@ function Checkout() {
   return (
     <HomeLayout>
       <form
+        noValidate
         onSubmit={handleSubscription}
         className="min-h-[92.4vh] flex items-center justify-center text-white"
       >
