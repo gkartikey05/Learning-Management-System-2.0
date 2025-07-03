@@ -8,7 +8,7 @@ export const getAllCourses = async (req, res, next) => {
   try {
     const courses = await Course.find({})
       .select("-lectures")
-      .sort({ updatedAt: 1 });
+      .sort({ updatedAt: -1 });
 
     return res.status(200).json({
       success: true,
